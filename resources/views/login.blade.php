@@ -22,7 +22,7 @@
                             <h1 class="text-2xl font-bold">Login</h1>
                         </div>
 
-                        <form action="" method="post">
+                        <form action="{{ route('routeName') }}" method="post">
                             <div class="container grid grid-rows-2 gap-4">
                                 <div>
                                     <label for="email" class="mb-2 block">Username/Email</label>
