@@ -31,6 +31,8 @@ Route::get('/test', function () {
 })->name('test');
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
-Route::get('/login', [PageController::class, 'login'])->name('login');
-Route::get('/register', [PageController::class, 'register'])->name('register');
+// Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
+Route::post('/dashboard', [PageController::class, 'login'])->name('login');
+// Route::get('/register', [PageController::class, 'register'])->name('register');
+// Route::get('/dashboard',[PageController::class, 'dashboard'])->name('dashboard');
+Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');

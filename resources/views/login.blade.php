@@ -22,7 +22,8 @@
                             <h1 class="text-2xl font-bold">Login</h1>
                         </div>
 
-                        <form action="{{ route('routeName') }}" method="post">
+                        <form action="{{ route('login') }}" method="post">
+                            @csrf
                             <div class="container grid grid-rows-2 gap-4">
                                 <div>
                                     <label for="email" class="mb-2 block">Username/Email</label>
@@ -44,7 +45,7 @@
                                 </div>
 
                                 <div class="mt-2 flex justify-center items-center">
-                                    <p>Don't have an account? <a href="{{ route('register') }}" class="underline text-blue-500">Register</a></p>
+                                    <p>Don't have an account? <a href="{{ route('redirect.page', ['register']) }}" class="underline text-blue-500">Register</a></p>
                                 </div>
 
                             </div>

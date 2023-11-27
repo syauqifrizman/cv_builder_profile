@@ -6,19 +6,35 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function home(){
-        return view('home');
-    }
-
-    public function cv_builder(){
-        return view('cv_builder');
+    public function redirectPage($page)
+    {
+        // Menangani redirect ke berbagai halaman
+        switch ($page) {
+            case 'home':
+                return view('home');
+                break;
+            case 'dashboard':
+                return view('dashboard');
+                break;
+            case 'register':
+                return view('register');
+                break;
+            case 'login':
+                return view('login');
+                break;
+            case 'cv_builder':
+                return view('cv_builder');
+                break;
+            case 'register':
+                return view('register');
+                break;
+            // Tambahkan halaman lainnya sesuai kebutuhan
+            default:
+                return abort(404);
+        }
     }
 
     public function login(){
-        return view('login');
-    }
-
-    public function register(){
-        return view('register');
+        return redirect()->route('redirect.page', ['page' => 'dashboard']);
     }
 }
