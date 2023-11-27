@@ -39,7 +39,7 @@
                                 </div>
 
                                 <div class="mt-2 flex justify-center items-center">
-                                    <p>Already have an account? <a href="{{ route('login') }}" class="underline text-blue-500">Login</a></p>
+                                    <p>Already have an account? <a href="{{ route('redirect.page', ['login']) }}" class="underline text-blue-500">Login</a></p>
                                 </div>
 
                             </div>
