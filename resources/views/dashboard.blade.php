@@ -1,6 +1,8 @@
 @extends('layout.master')
 
 @section('content')
+<div class="h-screen">
+
     <div>
         <h1>Resume Template</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
@@ -27,4 +29,5 @@
             <a href="{{ route('redirect.page', ['profile']) }}" class="nav-header">View Profile</a>
         </div>
     </div>
+</div>
 @endsection
