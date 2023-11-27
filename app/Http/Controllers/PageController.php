@@ -28,6 +28,9 @@ class PageController extends Controller
             case 'register':
                 return view('register');
                 break;
+            case 'profile':
+                return view('profile');
+                break;
             // Tambahkan halaman lainnya sesuai kebutuhan
             default:
                 return abort(404);
