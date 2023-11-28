@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center items-center h-screen">
-        <form action="{{ url('profile.blade.php') }}" method="post">
+        <form id="passwordForm" action="{{ route('redirect.page', ['profile']) }}" method="post">
             @csrf
             <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md p-8 w-96">
                 <div class="pt-5">
