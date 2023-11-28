@@ -30,7 +30,9 @@ Route::get('/test', function () {
     return view('archive.test');
 })->name('test');
 
-Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', function(){
+    return view('home');
+})->name('home');
 // Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
 Route::post('/dashboard', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
