@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Faker\Extension\PersonExtension;
 use Illuminate\Database\Seeder;
+use League\CommonMark\Node\Block\Document;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +21,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            UserSeeder::class,
+            DocumentSeeder::class,
+            EducationSeeder::class,
+            ExperienceSeeder::class,
+            PersonalSeeder::class,
+            ProjectSeeder::class,
+            Skill_OtherSeeder::class,
+            Pr_DetailSeeder::class,
+            TypeSeeder::class,
+            Exp_DescriptionSeeder::class,
+        ]);
     }
 }
