@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('Exp_Descriptions', function (Blueprint $table) {
-            $table->id();
+            $table->id('detail_id');
+            $table->text('description');
+            // tambahin foreign_key
+            $table->foreignId('experience_id')->references('experience_id')->on('Experiences')->onDelete('cascade');
             $table->timestamps();
         });
     }
