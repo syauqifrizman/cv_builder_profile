@@ -11,18 +11,19 @@
             <div>3</div>
             <div>4</div>
             <div>5</div>
-            {{-- ini ntar di foreach --}}
+            {{-- ini ntar di foreach juga sesuai dengan yg ada di database--}}
+
         </div>
     </div>
     <div>
         <h1>My CV</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            {{-- ini ntar di foreach juga sesuai dengan yg ada di database--}}
+            @foreach ($alldocs as $docs)
+                <div class="pl-3 pt-2 pb-2">
+                    <p class="text-2xl"><strong>{{$docs["title"]}}</strong></p>
+                    <p>Created at {{$docs["created_time"]}}</p>
+                </div>
+            @endforeach
         </div>
         <h1>Profile</h1>
         <div>

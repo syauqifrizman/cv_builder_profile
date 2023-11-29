@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Document;
 
 class PageController extends Controller
 {
@@ -14,7 +16,8 @@ class PageController extends Controller
                 return view('home');
                 break;
             case 'dashboard':
-                return view('dashboard');
+                $alldocs = Document::all();
+                return view('dashboard', compact("alldocs"));
                 break;
             case 'register':
                 return view('register');
