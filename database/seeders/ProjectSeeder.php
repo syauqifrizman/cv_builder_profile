@@ -18,7 +18,8 @@ class ProjectSeeder extends Seeder
             'project_id' => 1,
             'project_name' => 'Classroom App',
             'end_date' => '2022-12-31',
-            'project_url' => null, // Nullable URL
+            // 'project_url' => 'null,'
+            'document_id' => 1,// Nullable URL
         ]);
     }
 }
