@@ -17,6 +17,6 @@ class User extends Model
      */
     public function document(): HasMany
     {
-        return $this->hasMany(Product::class, 'document_id', 'user_id');
+        return $this->hasMany(Document::class);
     }
 }
