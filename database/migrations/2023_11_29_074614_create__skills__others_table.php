@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('Skills_Others', function (Blueprint $table) {
-            $table->id();
+            $table->id('skill_other_id');
+            $table->foreignId('document_id')->constrained();
+            $table->string('title', 255);
+            $table->string('description', 255);
             $table->timestamps();
         });
     }

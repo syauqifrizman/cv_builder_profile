@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('document_id');
             $table->string('title', 255);
             $table->dateTime('created_at');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
