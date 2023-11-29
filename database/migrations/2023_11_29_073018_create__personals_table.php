@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('linkedin_url', 255);
             $table->string('portofolio_url', 255)->nullable();
             $table->text('description');
-            $table->text('image');
+            $table->text('profile_image')->nullable();
             $table->timestamps();
         });
     }
