@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DocumentSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class DocumentSeeder extends Seeder
     {
         DB::table('Documents')->insert([
             'title' => 'CV orang ganteng',
-            'created_at' => '2023-11-29 10:10:10',
+            'created_time' => '2023-11-29 10:10:10',
             'user_id' => 1,
         ]);
     }
