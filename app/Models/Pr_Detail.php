@@ -17,8 +17,4 @@ class Pr_Detail extends Model
     {
         return $this->belongsTo(Project::class);
     }
-    public function document(): BelongsTo
-    {
-        return $this->belongsTo(Document::class);
-    }
 }
