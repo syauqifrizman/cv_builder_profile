@@ -18,10 +18,10 @@
     <div>
         <h1>My CV</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
-            @foreach ($alldocs as $docs)
+            @foreach ($docs as $doc)
                 <div class="pl-3 pt-2 pb-2">
-                    <p class="text-2xl"><strong>{{$docs["title"]}}</strong></p>
-                    <p>Created at {{$docs["created_time"]}}</p>
+                    <p class="text-2xl"><strong>{{$doc->title}}</strong></p>
+                    <p>Created at {{$doc->created_time}}</p>
                 </div>
             @endforeach
         </div>

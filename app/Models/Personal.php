@@ -11,11 +11,6 @@ class Personal extends Model
     protected $table = 'personals';
     protected $primaryKey = 'personal_id';
 
-    /**
-     * Get the user that owns the Personal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

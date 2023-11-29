@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Document;
 
+use App\Http\Controllers\DocumentController;
+use App\Models\Personal;
+
 class PageController extends Controller
 {
     public function redirectPage($page)
@@ -17,7 +20,7 @@ class PageController extends Controller
                 break;
             case 'dashboard':
                 $alldocs = Document::all();
-                return view('dashboard', compact("alldocs"));
+                return view('dashboard', ['docs' => $alldocs]);
                 break;
             case 'register':
                 return view('register');
@@ -26,7 +29,10 @@ class PageController extends Controller
                 return view('login');
                 break;
             case 'cv_builder':
-                return view('cv_builder');
+                // return (new DocumentController())->getPersonal();
+                $personalData = Personal::all();
+
+                return view('cv_builder', ['personalData' => $personalData]);
                 break;
             case 'register':
                 return view('register');

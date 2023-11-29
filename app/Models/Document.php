@@ -13,11 +13,6 @@ class Document extends Model
     protected $table ="documents";
     protected $primaryKey = 'document_id';
 
-    /**
-     * Get the user that owns the Document
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

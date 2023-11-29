@@ -74,39 +74,41 @@
                         <h1 class="text-2xl font-medium">Masukkan informasi pribadi kamu</h1>
                     </div>
 
+                    @foreach ($personalData as $personals)
+
                     <div class="mt-4">
                         <label for="nama" class="mb-2 block">Nama Lengkap</label>
-                        <input required type="text" name="input" id="nama" placeholder="Masukkan nama, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4">
+                        <input required type="text" name="input" id="nama" value="{{ $personals->fullname }}" placeholder="Masukkan nama, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="lokasi" class="mb-2 block">Lokasi/Domisili</label>
-                        <input type="text" name="input" id="lokasi" placeholder="Masukkan lokasi, e.g. Jakarta Barat, Indonesia" class="w-full h-10 rounded pl-4">
+                        <input type="text" name="input" id="lokasi" value="{{ $personals->domicile }}" placeholder="Masukkan lokasi, e.g. Jakarta Barat, Indonesia" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="email" class="mb-2 block">Email</label>
-                        <input required type="email" name="input" id="email" placeholder="Masukkan alamat email, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
+                        <input required type="email" name="input" id="email" value="{{ $personals->email }}" placeholder="Masukkan alamat email, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="telpon" class="mb-2 block">Nomor Handphone (Mobile)</label>
-                        <input required type="tel" name="input" id="telpon" placeholder="Masukkan nomor telepon, e.g. +62822612345" class="w-full h-10 rounded pl-4">
+                        <input required type="tel" name="input" id="telpon" value="{{ $personals->phone_number }}" placeholder="Masukkan nomor telepon, e.g. +62822612345" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="portofolio" class="mb-2 block">Portofolio/Website URL (opsional)</label>
-                        <input type="url" name="input" id="portofolio" placeholder="Masukkan url portofolio/website, e.g. https://github.com/syauqi" class="w-full h-10 rounded pl-4">
+                        <input type="url" name="input" id="portofolio" value="{{ $personals->portofolio_url }}" placeholder="Masukkan url portofolio/website, e.g. https://github.com/syauqi" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label required for="linkedin" class="mb-2 block">Linkedin Profile URL</label>
-                        <input type="url" name="input" id="linkedin" placeholder="Masukkan url profile linkedin, e.g. https://linkedin.com/in/syauqi" class="w-full h-10 rounded pl-4">
+                        <input type="url" name="input" id="linkedin" value="{{ $personals->linkedin_url }}" placeholder="Masukkan url profile linkedin, e.g. https://linkedin.com/in/syauqi" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label required for="deskripsi" class="mb-2 block">Deskripsi singkat tentang dirimu</label>
-                        <textarea rows="5" name="input" id="deskripsi" placeholder="Masukkan deskripsi singkat tentang dirimu, e.g. Saya Syauqi mahasiswa tingkat akhir program studi Computer Science peminatan Software Engineering dari Universitas Bina Nusantara. Memiliki pengalaman dalam proyek ... . Saya memiliki minat berkarir dalam bidang mobile application, dan web development. Saya memiliki kemampuan dalam menggunakan bahasa C++, Java." class="w-full h-30 rounded pl-4 pt-2 pb-2"></textarea>
+                        <textarea rows="5" name="input" id="deskripsi" value="{{ $personals->description }}" placeholder="Masukkan deskripsi singkat tentang dirimu, e.g. Saya Syauqi mahasiswa tingkat akhir program studi Computer Science peminatan Software Engineering dari Universitas Bina Nusantara. Memiliki pengalaman dalam proyek ... . Saya memiliki minat berkarir dalam bidang mobile application, dan web development. Saya memiliki kemampuan dalam menggunakan bahasa C++, Java." class="w-full h-30 rounded pl-4 pt-2 pb-2"></textarea>
                     </div>
 
                     <div class="mt-4">
@@ -129,6 +131,7 @@
                             <div id="imagePreview"></div>
                         </div>
                     </div>
+                    @endforeach
 
 
                     <script>
