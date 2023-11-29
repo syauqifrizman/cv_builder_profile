@@ -16,7 +16,7 @@ class ProjectSeeder extends Seeder
         //
         DB::table('Projects')->insert([
             'project_id' => 1,
-            'project_name' => 'tester',
+            'project_name' => 'Classroom App',
             'end_date' => '2022-12-31',
             'project_url' => null, // Nullable URL
         ]);

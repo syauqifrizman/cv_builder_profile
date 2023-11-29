@@ -16,8 +16,18 @@ class SkillOtherSeeder extends Seeder
         //
         DB::table('Skills_Others')->insert([
             'skill_other_id' => 1,
-            'title' => 'tester',
-            'description' => 'testing description',
+            'title' => 'Languages',
+            'description' => 'Java, Typescript, React, Go, Swift',
+        ]);
+        DB::table('Skills_Others')->insert([
+            'skill_other_id' => 2,
+            'title' => 'Technologies',
+            'description' => 'MySQL, Postgres, AWS, Git, BigQuery, Apache Spark',
+        ]);
+        DB::table('Skills_Others')->insert([
+            'skill_other_id' => 3,
+            'title' => 'Other',
+            'description' => 'Data structures and algorithms',
         ]);
     }
 }

@@ -16,7 +16,11 @@ class PrDetailSeeder extends Seeder
         //
         DB::table('Pr_Details')->insert([
             'detail_id' => 1,
-            'description' => 'testing description',
+            'description' => 'Make Android App using Java in 4-person team',
+        ]);
+        DB::table('Pr_Details')->insert([
+            'detail_id' => 2,
+            'description' => 'Enable ask quetion anonymously to Professors',
         ]);
     }
 }
