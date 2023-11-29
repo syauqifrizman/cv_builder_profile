@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('Personals', function (Blueprint $table) {
-            $table->id();
+            $table->id('personal_id');
+            $table->foreignId('document_id')->constrained();
+            $table->string('fullname', 255);
+            $table->string('domicile', 255);
+            $table->string('email', 255);
+            $table->string('phone_number', 255);
+            $table->string('linkedin_url', 255);
+            $table->string('portofolio_url', 255)->nullable();
+            $table->text('description');
+            $table->text('image');
             $table->timestamps();
         });
     }
