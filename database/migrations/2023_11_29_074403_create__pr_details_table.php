@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('Pr_Details', function (Blueprint $table) {
             $table->id('detail_id');
-            $table->foreignId('project_id')->constrained();
+            // Menambahkan foreign key
+            $table->unsignedBigInteger('project_id');
+            $table->foreign('project_id')->references('project_id')->on('Projects')->onDelete('cascade');
+
             $table->string('description', 255);
             $table->timestamps();
         });

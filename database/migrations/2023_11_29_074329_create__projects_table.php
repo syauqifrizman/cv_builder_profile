@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('Projects', function (Blueprint $table) {
             $table->id('project_id');
-            $table->foreignId('document_id')->constrained();
+            // Menambahkan foreign key
+            $table->unsignedBigInteger('document_id');
+            $table->foreign('document_id')->references('document_id')->on('Documents')->onDelete('cascade');
+
             $table->string('project_name', 255);
             $table->date('end_date');
             $table->string('project_url', 255)->nullable();

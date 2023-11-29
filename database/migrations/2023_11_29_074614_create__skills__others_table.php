@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('Skills_Others', function (Blueprint $table) {
             $table->id('skill_other_id');
-            $table->foreignId('document_id')->constrained();
+            // Menambahkan foreign key
+            $table->unsignedBigInteger('document_id');
+            $table->foreign('document_id')->references('document_id')->on('Documents')->onDelete('cascade');
+
             $table->string('title', 255);
             $table->string('description', 255);
             $table->timestamps();
