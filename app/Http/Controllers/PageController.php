@@ -19,8 +19,10 @@ class PageController extends Controller
                 return view('home');
                 break;
             case 'dashboard':
-                $alldocs = Document::all();
-                return view('dashboard', ['docs' => $alldocs]);
+                $documentController = new DocumentController();
+                $documents = $documentController->getAllDocument();
+
+                return view('dashboard', ['docs' => $documents]);
                 break;
             case 'register':
                 return view('register');
@@ -29,10 +31,10 @@ class PageController extends Controller
                 return view('login');
                 break;
             case 'cv_builder':
-                // return (new DocumentController())->getPersonal();
-                $personalData = Personal::all();
+                $documentController = new DocumentController();
+                $selectedDocument = $documentController->getDocumentByID(1);
 
-                return view('cv_builder', ['personalData' => $personalData]);
+                return view('cv_builder', ['document' => $selectedDocument]);
                 break;
             case 'register':
                 return view('register');

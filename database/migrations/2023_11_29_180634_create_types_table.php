@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Pr_Details', function (Blueprint $table) {
-            $table->id('detail_id');
-            // Menambahkan foreign key
-            $table->unsignedBigInteger('project_id');
-            $table->foreign('project_id')->references('project_id')->on('Projects')->onDelete('cascade');
-
-            $table->string('description', 255);
+        Schema::create('types', function (Blueprint $table) {
+            $table->id();
+            $table->string('type_name', 255);
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Pr_Details');
+        Schema::dropIfExists('types');
     }
 };

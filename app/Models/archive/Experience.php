@@ -10,12 +10,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Experience extends Model
 {
     protected $table = 'experiences';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'experience_id';
 
-    public function experienceDescription(): HasMany
+    public function exp_descriptions(): HasMany
     {
-        // return $this->hasMany(Exp_Description::class, 'experience_id', 'experience_id');
-        return $this->hasMany(ExperienceDescription::class);
+        return $this->hasMany(Exp_Description::class, 'experience_id', 'experience_id');
     }
 
     public function document(): BelongsTo
@@ -25,7 +24,6 @@ class Experience extends Model
 
     public function type(): BelongsTo
     {
-        // return $this->belongsTo(Type::class, 'type_id', 'experience_id');
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class, 'type_id', 'experience_id');
     }
 }

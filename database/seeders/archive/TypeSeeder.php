@@ -13,12 +13,19 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('types')->insert(
+        // $types = [
+        //     [
+        //         'type_name'=> 'Work Experience',
+        //         'type_name'=> 'Organization Experience'
+        //     ],
+        //];
+        //
+        DB::table('Types')->insert(
             [
                 'type_name'=> 'Work Experience',
             ]);
 
-        DB::table('types')->insert(
+        DB::table('Types')->insert(
             [
                 'type_name'=>'Organization Experience',
         ]);

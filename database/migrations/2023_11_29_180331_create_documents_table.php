@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Skills_Others', function (Blueprint $table) {
-            $table->id('skill_other_id');
-            // Menambahkan foreign key
-            $table->unsignedBigInteger('document_id');
-            $table->foreign('document_id')->references('document_id')->on('Documents')->onDelete('cascade');
-
+        Schema::create('documents', function (Blueprint $table) {
+            $table->id();
             $table->string('title', 255);
-            $table->string('description', 255);
+            $table->dateTime('created_time');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Skills_Others');
+        Schema::dropIfExists('documents');
     }
 };

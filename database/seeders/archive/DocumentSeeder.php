@@ -13,7 +13,7 @@ class DocumentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('documents')->insert([
+        DB::table('Documents')->insert([
             'title' => 'CV orang ganteng',
             'created_time' => '2023-11-29 10:10:10',
             'user_id' => 1,

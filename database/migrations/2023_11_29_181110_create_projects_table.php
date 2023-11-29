@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Projects', function (Blueprint $table) {
-            $table->id('project_id');
+        Schema::create('projects', function (Blueprint $table) {
+            $table->id();
             // Menambahkan foreign key
-            $table->unsignedBigInteger('document_id');
-            $table->foreign('document_id')->references('document_id')->on('Documents')->onDelete('cascade');
+            $table->foreignId('document_id')->constrained('documents')->onDelete('cascade');
 
             $table->string('project_name', 255);
             $table->date('end_date');
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Projects');
+        Schema::dropIfExists('projects');
     }
 };

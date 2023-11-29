@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class User extends Model
 {
     protected $table ='users';
-    protected $primaryKey ='id';
+    protected $primaryKey ='user_id';
     /**
      * Get all of the comments for the User
      *

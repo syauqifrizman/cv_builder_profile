@@ -3,6 +3,12 @@
 @section('content')
 <div class="h-screen">
 
+    <div class="grid justify-items-end mr-10">
+        <h1>Profile</h1>
+        <div>
+            <a href="{{ route('redirect.page', ['profile']) }}" class="nav-header">View Profile</a>
+        </div>
+    </div>
     <div>
         <h1>Resume Template</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
@@ -18,16 +24,24 @@
     <div>
         <h1>My CV</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
-            @foreach ($docs as $doc)
-                <div class="pl-3 pt-2 pb-2">
-                    <p class="text-2xl"><strong>{{$doc->title}}</strong></p>
-                    <p>Created at {{$doc->created_time}}</p>
-                </div>
-            @endforeach
+
         </div>
-        <h1>Profile</h1>
-        <div>
-            <a href="{{ route('redirect.page', ['profile']) }}" class="nav-header">View Profile</a>
+
+        <div class="flex flex-row">
+            @foreach ($docs as $doc)
+            <div class="flex items-end basis-1/6 m-5 h-48 border-2 border-sky-200">
+                <a href="{{ route('detail', ['username' => $doc->user->username, 'document_id' => $doc->id]) }}" class="w-full">
+                    <div class="p-2 bg-sky-200">
+                        <div class="font-semibold">
+                            {{ $doc->title }}
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            Created: {{$doc->created_time}}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

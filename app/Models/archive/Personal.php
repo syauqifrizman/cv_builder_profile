@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Education extends Model
+class Personal extends Model
 {
-    protected $table = 'educations';
-    protected $primaryKey = 'id';
+    protected $table = 'personals';
+    protected $primaryKey = 'personal_id';
 
     public function document(): BelongsTo
     {

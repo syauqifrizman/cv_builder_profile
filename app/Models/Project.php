@@ -9,16 +9,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
-    // use HasFactory;
-    protected $table ="Projects";
-    protected $primaryKey = 'project_id';
+    protected $table ="projects";
+    protected $primaryKey = 'id';
 
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
     }
-    public function detail(): HasMany
+    public function projectDetail(): HasMany
     {
-        return $this->hasMany(Detail::class);
+        return $this->hasMany(ProjectDetail::class);
     }
 }

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Education extends Model
+class SkillOther extends Model
 {
-    protected $table = 'educations';
+    protected $table ="skill_others";
     protected $primaryKey = 'id';
 
     public function document(): BelongsTo

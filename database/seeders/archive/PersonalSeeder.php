@@ -13,7 +13,7 @@ class PersonalSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('personals')->insert([
+        DB::table('Personals')->insert([
             'document_id' => 1,
             'fullname' => 'Asep Surasep',
             'domicile' => 'Jl. Sudirman no.1',

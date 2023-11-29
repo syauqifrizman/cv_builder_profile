@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Personal extends Model
 {
     protected $table = 'personals';
-    protected $primaryKey = 'personal_id';
+    protected $primaryKey = 'id';
 
     public function document(): BelongsTo
     {

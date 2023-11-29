@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\DocumentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,3 +41,4 @@ Route::post('/dashboard', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
 // Route::get('/dashboard',[PageController::class, 'dashboard'])->name('dashboard');
 Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
+Route::get('/cv_builder/{username}/{document_id}', [DocumentController::class, 'getDetail'])->name('detail');

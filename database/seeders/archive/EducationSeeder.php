@@ -13,7 +13,7 @@ class EducationSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('educations')->insert([
+        DB::table('Educations')->insert([
             'document_id' => 1,
             'education_name' => 'BINUS IKN',
             'education_location' => 'Jl. Jokowi no.1',

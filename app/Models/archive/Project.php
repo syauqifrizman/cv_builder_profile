@@ -5,14 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Education extends Model
+class Project extends Model
 {
-    protected $table = 'educations';
-    protected $primaryKey = 'id';
+    // use HasFactory;
+    protected $table ="Projects";
+    protected $primaryKey = 'project_id';
 
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);
+    }
+    public function detail(): HasMany
+    {
+        return $this->hasMany(Detail::class);
     }
 }

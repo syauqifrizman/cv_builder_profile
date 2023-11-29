@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
             ExperienceSeeder::class,
             PersonalSeeder::class,
             ProjectSeeder::class,
-            Skill_OtherSeeder::class,
-            Pr_DetailSeeder::class,
-            Exp_DescriptionSeeder::class,
+            SkillOtherSeeder::class,
+            ProjectDetailSeeder::class,
+            ExperienceDescriptionSeeder::class,
         ]);
     }
 }

@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Education extends Model
+class ProjectDetail extends Model
 {
-    protected $table = 'educations';
+    protected $table ="project_details";
     protected $primaryKey = 'id';
 
-    public function document(): BelongsTo
+    public function project(): BelongsTo
     {
-        return $this->belongsTo(Document::class);
+        return $this->belongsTo(Project::class);
     }
 }

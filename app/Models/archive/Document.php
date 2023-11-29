@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Document extends Model
 {
     protected $table ="documents";
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'document_id';
 
     public function user(): BelongsTo
     {
@@ -20,14 +20,12 @@ class Document extends Model
 
     public function education(): HasMany
     {
-        // return $this->hasMany(Education::class, 'document_id', 'document_id');
-        return $this->hasMany(Education::class);
+        return $this->hasMany(Education::class, 'document_id', 'document_id');
     }
 
     public function experience(): HasMany
     {
-        // return $this->hasMany(Experience::class, 'document_id', 'document_id');
-        return $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class, 'document_id', 'document_id');
     }
 
     public function project(): HasMany
@@ -37,12 +35,12 @@ class Document extends Model
 
     public function personal(): HasOne
     {
-        // return $this->hasOne(Personal::class, 'document_id', 'document_id');
-        return $this->hasOne(Personal::class);
+        // return $this->hasOne(Personal::class); error
+        return $this->hasOne(Personal::class, 'document_id', 'document_id');
     }
 
-    public function skillOther(): HasMany
+    public function skill_other(): HasMany
     {
-        return $this->hasMany(SkillOther::class);
+        return $this->hasMany(Skill_Other::class);
     }
 }

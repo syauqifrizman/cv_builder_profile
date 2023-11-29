@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Exp_Descriptions', function (Blueprint $table) {
-            $table->id('detail_id');
-            $table->text('description');
-            // tambahin foreign_key
-            $table->foreignId('experience_id')->references('experience_id')->on('Experiences')->onDelete('cascade');
+        Schema::create('Documents', function (Blueprint $table) {
+            $table->id('');
+            $table->string('title', 255);
+            $table->dateTime('created_time');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Exp_Descriptions');
+        Schema::dropIfExists('Documents');
     }
 };
