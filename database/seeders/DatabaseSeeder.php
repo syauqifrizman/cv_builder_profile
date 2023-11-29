@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DocumentSeeder::class,
             EducationSeeder::class,
+            TypeSeeder::class,
             ExperienceSeeder::class,
             PersonalSeeder::class,
             ProjectSeeder::class,
             Skill_OtherSeeder::class,
             Pr_DetailSeeder::class,
-            TypeSeeder::class,
             Exp_DescriptionSeeder::class,
         ]);
     }
