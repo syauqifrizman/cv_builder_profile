@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+
     public function getAllDocument(){
         $documents = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])->get();
 

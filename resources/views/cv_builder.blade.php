@@ -76,37 +76,37 @@
 
                     <div class="mt-4">
                         <label for="nama" class="mb-2 block">Nama Lengkap</label>
-                        <input required type="text" name="input" id="nama" value="{{ $document->personal->fullname }}" placeholder="Masukkan nama, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4">
+                        <input required type="text" name="input" id="nama" value="{{ $document ? $document->personal->fullname : '' }}" placeholder="Masukkan nama, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="lokasi" class="mb-2 block">Lokasi/Domisili</label>
-                        <input type="text" name="input" id="lokasi" value="{{ $document->personal->domicile }}" placeholder="Masukkan lokasi, e.g. Jakarta Barat, Indonesia" class="w-full h-10 rounded pl-4">
+                        <input type="text" name="input" id="lokasi" value="{{ $document ? $document->personal->domicile : '' }}" placeholder="Masukkan lokasi, e.g. Jakarta Barat, Indonesia" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="email" class="mb-2 block">Email</label>
-                        <input required type="email" name="input" id="email" value="{{ $document->personal->email }}" placeholder="Masukkan alamat email, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
+                        <input required type="email" name="input" id="email" value="{{ $document ? $document->personal->email : '' }}" placeholder="Masukkan alamat email, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="telpon" class="mb-2 block">Nomor Handphone (Mobile)</label>
-                        <input required type="tel" name="input" id="telpon" value="{{ $document->personal->phone_number }}" placeholder="Masukkan nomor telepon, e.g. +62822612345" class="w-full h-10 rounded pl-4">
+                        <input required type="tel" name="input" id="telpon" value="{{ $document ? $document->personal->phone_number : '' }}" placeholder="Masukkan nomor telepon, e.g. +62822612345" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label for="portofolio" class="mb-2 block">Portofolio/Website URL (opsional)</label>
-                        <input type="url" name="input" id="portofolio" value="{{ $document->personal->portofolio_url }}" placeholder="Masukkan url portofolio/website, e.g. https://github.com/syauqi" class="w-full h-10 rounded pl-4">
+                        <input type="url" name="input" id="portofolio" value="{{ $document ? $document->personal->portofolio_url : '' }}" placeholder="Masukkan url portofolio/website, e.g. https://github.com/syauqi" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label required for="linkedin" class="mb-2 block">Linkedin Profile URL</label>
-                        <input type="url" name="input" id="linkedin" value="{{ $document->personal->linkedin_url }}" placeholder="Masukkan url profile linkedin, e.g. https://linkedin.com/in/syauqi" class="w-full h-10 rounded pl-4">
+                        <input type="url" name="input" id="linkedin" value="{{ $document ? $document->personal->linkedin_url : '' }}" placeholder="Masukkan url profile linkedin, e.g. https://linkedin.com/in/syauqi" class="w-full h-10 rounded pl-4">
                     </div>
 
                     <div class="mt-4">
                         <label required for="deskripsi" class="mb-2 block">Deskripsi singkat tentang dirimu</label>
-                        <textarea rows="5" name="input" id="deskripsi" placeholder="Masukkan deskripsi singkat tentang dirimu, e.g. Saya Syauqi mahasiswa tingkat akhir program studi Computer Science peminatan Software Engineering dari Universitas Bina Nusantara. Memiliki pengalaman dalam proyek ... . Saya memiliki minat berkarir dalam bidang mobile application, dan web development. Saya memiliki kemampuan dalam menggunakan bahasa C++, Java." class="w-full h-30 rounded pl-4 pt-2 pb-2">{{ $document->personal->description }}</textarea>
+                        <textarea rows="5" name="input" id="deskripsi" placeholder="Masukkan deskripsi singkat tentang dirimu, e.g. Saya Syauqi mahasiswa tingkat akhir program studi Computer Science peminatan Software Engineering dari Universitas Bina Nusantara. Memiliki pengalaman dalam proyek ... . Saya memiliki minat berkarir dalam bidang mobile application, dan web development. Saya memiliki kemampuan dalam menggunakan bahasa C++, Java." class="w-full h-30 rounded pl-4 pt-2 pb-2">{{ $document ? $document->personal->description : '' }}</textarea>
                     </div>
 
                     <div class="mt-4">
@@ -156,7 +156,8 @@
                     </script>
 
                     <div class="mt-5 pb-5 flex justify-end items-end">
-                        <button type="reset" class="bg-white rounded-md px-6 py-2 border border-sky-800 hover:bg-sky-50">Reset</button>
+                        <button type="button" id="resetButton" class="bg-white rounded-md px-6 py-2 border border-sky-800 hover:bg-sky-50">Reset</button>
+
                         <button type="submit" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Simpan & Lanjutkan</button>
                     </div>
 
@@ -164,6 +165,23 @@
             </div>
 
         </form>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var resetButton = document.getElementById("resetButton");
+
+                resetButton.addEventListener("click", function() {
+                    document.getElementById("nama").value = '';
+                    document.getElementById("lokasi").value = '';
+                    document.getElementById("email").value = '';
+                    document.getElementById("telpon").value = '';
+                    document.getElementById("portofolio").value = '';
+                    document.getElementById("linkedin").value = '';
+                    document.getElementById("deskripsi").value = '';
+                });
+            });
+        </script>
+
 
         {{-- ini untuk view export pdf --}}
         <div>

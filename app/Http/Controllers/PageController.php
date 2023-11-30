@@ -11,6 +11,13 @@ use App\Models\Personal;
 
 class PageController extends Controller
 {
+    protected $documentController;
+
+    public function __construct(DocumentController $document)
+    {
+        $this->documentController = $document;
+    }
+
     public function redirectPage($page)
     {
         // Menangani redirect ke berbagai halaman
@@ -19,9 +26,7 @@ class PageController extends Controller
                 return view('home');
                 break;
             case 'dashboard':
-                $documentController = new DocumentController();
-                $documents = $documentController->getAllDocument();
-
+                $documents = $this->documentController->getAllDocument();
                 return view('dashboard', ['docs' => $documents]);
                 break;
             case 'register':
@@ -31,13 +36,7 @@ class PageController extends Controller
                 return view('login');
                 break;
             case 'cv_builder':
-                $documentController = new DocumentController();
-                $selectedDocument = $documentController->getDocumentByID(1);
-
-                return view('cv_builder', ['document' => $selectedDocument]);
-                break;
-            case 'register':
-                return view('register');
+                return view('cv_builder', ['document' => null]);
                 break;
             case 'profile':
                 return view('profile');
@@ -51,7 +50,4 @@ class PageController extends Controller
         }
     }
 
-    public function login(){
-        return redirect()->route('redirect.page', ['page' => 'dashboard']);
-    }
 }

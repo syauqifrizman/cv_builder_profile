@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DocumentController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +37,12 @@ Route::get('/', function(){
 })->name('home');
 
 // Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
-Route::post('/dashboard', [PageController::class, 'login'])->name('login');
+// Route::post('/dashboard', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
 // Route::get('/dashboard',[PageController::class, 'dashboard'])->name('dashboard');
 Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
+
+
 Route::get('/cv_builder/{username}/{document_id}', [DocumentController::class, 'getDetail'])->name('detail');
+
+Route::post('/dashboard', [UserController::class, 'login'])->name('login');
