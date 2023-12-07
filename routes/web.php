@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,9 +42,24 @@ Route::get('/', function(){
 // Route::post('/dashboard', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
 // Route::get('/dashboard',[PageController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+Route::post('register', [RegisterController::class, 'store'])->name('register');
+
+// Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
+// Route::post('login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');
+// Route::post('/dashboard', [UserController::class, 'login'])->name('login')->middleware('auth');
+
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+// Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/dashboard', [UserController::class, 'login'])->name('login');
+Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+
+
+
 Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
 
 
 Route::get('/cv_builder/{username}/{document_id}', [DocumentController::class, 'getDetail'])->name('detail');
 
-Route::post('/dashboard', [UserController::class, 'login'])->name('login');
+//Route::post('/dashboard', [UserController::class, 'login'])->name('login');

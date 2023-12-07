@@ -13,13 +13,16 @@ class ProjectDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('project_details')->insert([
-            'description' => 'Make Android App using Java in 4-person team',
-            'project_id' => 1,
-        ]);
-        DB::table('project_details')->insert([
-            'description' => 'Enable ask quetion anonymously to Professors',
-            'project_id' => 1,
-        ]);
+        $project_details = [
+            [
+                'description' => 'Make Android App using Java in 4-person team',
+                'project_id' => 1,
+            ],
+            [
+                'description' => 'Enable ask quetion anonymously to Professors',
+                'project_id' => 1,
+            ],
+        ];
+        DB::table('project_details')->insert($project_details);
     }
 }

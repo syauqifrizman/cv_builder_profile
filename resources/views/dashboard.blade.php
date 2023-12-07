@@ -10,6 +10,7 @@
         </div>
     </div>
     <div>
+        <h1>{{ auth()->user()->email }}</h1>
         <h1>Resume Template</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
             <div>1</div>

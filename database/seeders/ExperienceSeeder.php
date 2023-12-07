@@ -13,7 +13,7 @@ class ExperienceSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('experiences')->insert(
+        $experiences = [
             [
                 'company_name'=> 'TokTok Shop',
                 'position'=> 'Software Engineering',
@@ -23,19 +23,28 @@ class ExperienceSeeder extends Seeder
                 'end_date' => '2022-12-31',
                 'type_id' => 1,
                 'document_id' => 1,
-            ]
-        );
-
-        DB::table('experiences')->insert(
+            ],
             [
                 'company_name'=> 'HIMTI',
                 'position'=> 'Lead Web Dev Division',
                 'company_location'=> 'Jakarta, Indonesia',
+                'company_description'=> null,
                 'start_date'=>'2021-01-01',
                 'end_date' => '2023-06-25',
                 'type_id' => 2,
                 'document_id' => 1,
-            ]
-        );
+            ],
+            [
+                'company_name'=> 'HIMTI',
+                'position'=> 'Education Division',
+                'company_location'=> 'Jakarta, Indonesia',
+                'company_description'=> null,
+                'start_date'=>'2021-01-01',
+                'end_date' => '2021-12-25',
+                'type_id' => 2,
+                'document_id' => 2,
+            ],
+        ];
+        DB::table('experiences')->insert($experiences);
     }
 }

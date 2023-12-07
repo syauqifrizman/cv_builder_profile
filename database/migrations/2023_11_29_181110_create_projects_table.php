@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignId('document_id')->constrained('documents')->onDelete('cascade');
 
             $table->string('project_name', 255);
-            $table->date('end_date');
+            // $table->date('end_date');
+            $table->year('year');
             $table->string('project_url', 255)->nullable();
             $table->timestamps();
         });

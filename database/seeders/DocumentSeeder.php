@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -13,10 +14,18 @@ class DocumentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('documents')->insert([
-            'title' => 'CV orang ganteng',
-            'created_time' => '2023-11-29 10:10:10',
-            'user_id' => 1,
-        ]);
+        $documents = [
+            [
+                'title' => 'Resume - John Doe',
+                'created_time' => Carbon::now(),
+                'user_id' => 1,
+            ],
+            [
+                'title' => 'Curriculum Vitae - Jane Smith',
+                'created_time' => Carbon::now(),
+                'user_id' => 2,
+            ],
+        ];
+        DB::table('documents')->insert($documents);
     }
 }

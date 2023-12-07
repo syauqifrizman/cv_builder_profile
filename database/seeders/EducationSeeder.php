@@ -13,15 +13,32 @@ class EducationSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('educations')->insert([
-            'document_id' => 1,
-            'education_name' => 'BINUS IKN',
-            'education_location' => 'Jl. Jokowi no.1',
-            'education_level' => 'Undergraduate',
-            'education_major' => 'Computer Science',
-            'current_score' => 3.54,
-            'start_date' => '2022-10-10',
-            'end_date' => '2026-10-10',
-        ]);
+        $educations = [
+            [
+                'document_id' => 1,
+                'education_name' => 'SUNIB UNIVERSITY',
+                'education_location' => 'Jakarta',
+                'education_level' => 'Undergraduate',
+                'education_major' => 'Computer Science',
+                'current_score' => 3.54,
+                'max_score' => 4.00,
+                'start_date' => '2022-10-10',
+                'end_date' => '2026-10-10',
+                'related_coursework' => 'Object Oriented Programming, Data Structure, Database, Pattern Software Design',
+            ],
+            [
+                'document_id' => 2,
+                'education_name' => 'ITSUNIB UNIVERSITY',
+                'education_location' => 'Bandung',
+                'education_level' => 'Undergraduate',
+                'education_major' => 'Information System',
+                'current_score' => 3.84,
+                'max_score' => 4.00,
+                'start_date' => '2021-10-10',
+                'end_date' => '2025-10-10',
+                'related_coursework' => null,
+            ],
+        ];
+        DB::table('educations')->insert($educations);
     }
 }

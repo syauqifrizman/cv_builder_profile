@@ -13,11 +13,20 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('projects')->insert([
-            'project_name' => 'Classroom App',
-            'end_date' => '2022-12-31',
-            // 'project_url' => 'null,'
-            'document_id' => 1,// Nullable URL
-        ]);
+        $projects = [
+            [
+                'project_name' => 'Classroom App',
+                'year' => 2022,
+                'project_url' => 'https://github.com/johndoe/classroomapp',
+                'document_id' => 1,
+            ],
+            [
+                'project_name' => 'Ramen Web App',
+                'year' => 2016,
+                'project_url' => null,
+                'document_id' => 1,
+            ]
+        ];
+        DB::table('projects')->insert($projects);
     }
 }

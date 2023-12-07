@@ -22,17 +22,17 @@
                             <h1 class="text-2xl font-bold">Login</h1>
                         </div>
 
-                        <form action="{{ route('login') }}" method="post">
+                        <form action="{{ route('actionlogin') }}" method="post">
                             @csrf
                             <div class="container grid grid-rows-2 gap-4">
                                 <div>
                                     <label for="email" class="mb-2 block">Username/Email</label>
-                                    <input required type="email" name="input" id="email" placeholder="Masukkan alamat email anda, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
+                                    <input required type="email" name="email" id="email" placeholder="Masukkan alamat email anda, e.g. syauqi@gmail.com" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" class="w-full h-10 rounded pl-4">
                                 </div>
 
                                 <div>
                                     <label for="password" class="mb-2 block">Password</label>
-                                    <input required type="password" name="input" id="password" placeholder="Masukkan password anda" class="w-full h-10 rounded pl-4">
+                                    <input required type="password" name="password" id="password" placeholder="Masukkan password anda" class="w-full h-10 rounded pl-4">
                                 </div>
                             </div>
                             <div>

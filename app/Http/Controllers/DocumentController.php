@@ -16,7 +16,7 @@ class DocumentController extends Controller
     }
 
     public function getDocumentByID($document_id){
-        $selectedDocument = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])->find($document_id);
+        $selectedDocument = Document::with(['education', 'experience.experienceDescription', 'experience.type', 'personal', 'project.projectDetail', 'skillOther', 'user'])->find($document_id);
 
         return $selectedDocument;
     }
@@ -24,6 +24,7 @@ class DocumentController extends Controller
     public function getDetail($username, $document_id){
         $documentController = new DocumentController();
         $selectedDocument = $documentController->getDocumentByID($document_id);
+        // dd($selectedDocument);
 
         // $selectedDocument = Document::query()->find($document_id);
 
