@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="flex justify-center items-center h-screen">
-        <form id="passwordForm" action="{{ route('redirect.page', ['profile']) }}" method="post">
+        <form id="passwordForm" action="{{ route('changePassword') }}" method="post">
             @csrf
             <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md p-8 w-96">
                 <div class="pt-5">
@@ -28,6 +28,15 @@
                     <button type="submit" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Change Password</button>
                 </div>
             </div>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
         </form>
     </div>
 @endsection

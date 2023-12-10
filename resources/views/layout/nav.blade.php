@@ -3,7 +3,11 @@
     <div class="flex">
         <div class="left-nav flex mr-auto gap-2">
             <div>
-                <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a>
+                @auth
+                <a href="{{ route('redirect.page', ['dashboard']) }}" class="nav-header">Home</a>
+                @else
+                    <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a>
+                @endauth
             </div>
             <div>
                 <a href="{{ route('redirect.page', ['cv_builder']) }}" class="nav-header">CV Builder</a>
@@ -11,12 +15,22 @@
         </div>
 
         <div class="right-nav flex gap-2">
-            <div>
-                <a href="{{ route('redirect.page', ['login']) }}" class="btn-ghost">Login</a>
-            </div>
-            <div>
-                <a href="{{ route('redirect.page', ['register']) }}" class="btn-solid">Register</a>
-            </div>
+            @auth
+                <div>
+                    <a href="{{ route('redirect.page', ['profile']) }}" class="btn-ghost">Profile</a>
+                </div>
+                <div>
+                    <a href="{{ route('redirect.page', ['logout']) }}" class="btn-solid">Logout</a>
+                </div>
+            @else
+                <div>
+                    <a href="{{ route('redirect.page', ['login']) }}" class="btn-ghost">Login</a>
+                </div>
+                <div>
+                    <a href="{{ route('redirect.page', ['register']) }}" class="btn-solid">Register</a>
+                </div>
+            @endauth
+
         </div>
     </div>
 </nav>

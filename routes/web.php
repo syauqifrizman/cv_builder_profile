@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\LogoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Auth\Events\Logout;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +57,15 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 // Route::post('login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('/dashboard', [UserController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
+Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('update');
+Route::post('/change_password', [ProfileController::class, 'changePassword'])->name('changePassword');
+
+
+
+
+
+
 
 
 

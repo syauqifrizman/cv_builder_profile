@@ -44,6 +44,9 @@ class PageController extends Controller
             case 'change_password':
                 return view('change_password');
                 break;
+            case 'update':
+                return view('profile');
+                break;
             // Tambahkan halaman lainnya sesuai kebutuhan
             default:
                 return abort(404);
