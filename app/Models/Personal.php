@@ -11,6 +11,10 @@ class Personal extends Model
     protected $table = 'personals';
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

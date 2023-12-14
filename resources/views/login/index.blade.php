@@ -18,8 +18,15 @@
             <div class="right-content w-1/2 p-5">
                 <div class="flex justify-center items-center h-full">
                     <div class="bg-sky-50 rounded border border-solid border-sky-50 p-5 w-4/5">
-                        <div class="flex justify-center items-center">
-                            <h1 class="text-2xl font-bold">Login</h1>
+                        <div>
+                            @if (session()->has('success'))
+                                <div class="bg-green-50 rounded border border-solid border-green-50 p-2">
+                                    <div class="flex justify-center items-center">
+                                        <h1 class="text-lg text-green-800 italic">{{ session('success') }}</h1>
+                                    </div>
+                                </div>
+                            @endif
+                            <h1 class="text-2xl font-bold flex justify-center items-center">Login</h1>
                         </div>
 
                         <form action="{{ route('actionlogin') }}" method="post">
@@ -45,7 +52,7 @@
                                 </div>
 
                                 <div class="mt-2 flex justify-center items-center">
-                                    <p>Don't have an account? <a href="{{ route('redirect.page', ['register']) }}" class="underline text-blue-500">Register</a></p>
+                                    <p>Don't have an account? <a href="{{ route('register') }}" class="underline text-blue-500">Register</a></p>
                                 </div>
 
                             </div>

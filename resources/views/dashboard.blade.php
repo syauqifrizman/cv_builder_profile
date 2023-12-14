@@ -6,11 +6,11 @@
     <div class="grid justify-items-end mr-10">
         <h1>Profile</h1>
         <div>
-            <a href="{{ route('redirect.page', ['profile']) }}" class="nav-header">View Profile</a>
+            {{-- <a href="{{ route('redirect.page', ['profile']) }}" class="nav-header">View Profile</a> --}}
         </div>
     </div>
     <div>
-        <h1>{{ auth()->user()->email }}</h1>
+        {{-- <h1>{{ auth()->user()->email }}</h1> --}}
         <h1>Resume Template</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
             <div>1</div>
@@ -26,6 +26,16 @@
         <h1>My CV</h1>
         <div class="grid grid-cols-4 bg-neutral-200 gap-4">
 
+        </div>
+
+        <div>
+            @if (session()->has('success'))
+                <div class="bg-green-50 rounded border border-solid border-green-50 p-2">
+                    <div class="flex justify-center items-center">
+                        <h1 class="text-lg text-green-800 italic">{{ session('success') }}</h1>
+                    </div>
+                </div>
+            @endif
         </div>
 
         <div class="flex flex-row">

@@ -3,19 +3,26 @@
     <div class="flex">
         <div class="left-nav flex mr-auto gap-2">
             <div>
-                @auth
+                {{-- @auth
                 <a href="{{ route('redirect.page', ['dashboard']) }}" class="nav-header">Home</a>
                 @else
                     <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a>
-                @endauth
+                @endauth --}}
+                <ul>
+                    <li>
+                        {{-- <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a> --}}
+                        <a href="{{ route('dashboard', ['user_id' => 1]) }}" class="nav-header">Dashboard</a>
+                        <a href="{{ route('cv_builder') }}" class="nav-header">CV Builder</a>
+                    </li>
+                </ul>
             </div>
-            <div>
+            {{-- <div>
                 <a href="{{ route('redirect.page', ['cv_builder']) }}" class="nav-header">CV Builder</a>
-            </div>
+            </div> --}}
         </div>
 
         <div class="right-nav flex gap-2">
-            @auth
+            {{-- @auth
                 <div>
                     <a href="{{ route('redirect.page', ['profile']) }}" class="btn-ghost">Profile</a>
                 </div>
@@ -29,7 +36,11 @@
                 <div>
                     <a href="{{ route('redirect.page', ['register']) }}" class="btn-solid">Register</a>
                 </div>
-            @endauth
+            @endauth --}}
+            <div>
+                <a href="{{ route('login') }}" class="btn-ghost">Login</a>
+                <a href="{{ route('register') }}" class="btn-solid">Register</a>
+            </div>
 
         </div>
     </div>

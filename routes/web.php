@@ -38,39 +38,43 @@ Route::get('/test', function () {
 })->name('test');
 
 Route::get('/', function(){
-    return view('home');
-})->name('home');
+    return view('home', ['title' => 'Home']);
+});
 
 // Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
 // Route::post('/dashboard', [PageController::class, 'login'])->name('login');
 // Route::get('/register', [PageController::class, 'register'])->name('register');
 // Route::get('/dashboard',[PageController::class, 'dashboard'])->name('dashboard');
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('register', [RegisterController::class, 'store'])->name('register');
+// nanti aktifin lagi
+// Route::get('/register', [RegisterController::class, 'create'])->name('register');
+// Route::post('register', [RegisterController::class, 'store'])->name('register');
 
 // Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 // Route::post('login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');
 // Route::post('/dashboard', [UserController::class, 'login'])->name('login')->middleware('auth');
 
-Route::get('/login', [LoginController::class, 'login'])->name('login');
+// nanti aktifin lagi
+// Route::get('/login', [LoginController::class, 'login'])->name('login');
+
 // Route::post('login', [LoginController::class, 'authenticate'])->name('login');
-Route::post('/dashboard', [UserController::class, 'login'])->name('login');
+// Route::post('/dashboard', [UserController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('update');
 Route::post('/change_password', [ProfileController::class, 'changePassword'])->name('changePassword');
 
+// Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
+
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
+Route::get('/cv_builder', [DocumentController::class, 'cv_builder'])->name('cv_builder');
+Route::post('/cv_builder', [DocumentController::class, 'store_data'])->name('store_data');
 
 
-
-
-
-
-
-
-Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
-
+Route::get('/dashboard/{user_id}', [DocumentController::class, 'index'])->name('dashboard');
 
 Route::get('/cv_builder/{username}/{document_id}', [DocumentController::class, 'getDetail'])->name('detail');
 
