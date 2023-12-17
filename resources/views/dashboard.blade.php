@@ -41,7 +41,7 @@
         <div class="flex flex-row">
             @foreach ($docs as $doc)
             <div class="flex items-end basis-1/6 m-5 h-48 border-2 border-sky-200">
-                <a href="{{ route('detail', ['username' => $doc->user->username, 'document_id' => $doc->id]) }}" class="w-full">
+                <a href="{{ route('test', ['username' => $doc->user->username, 'document' => $doc->id]) }}" class="w-full">
                     <div class="p-2 bg-sky-200">
                         <div class="font-semibold">
                             {{ $doc->title }}

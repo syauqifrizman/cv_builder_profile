@@ -11,7 +11,7 @@
                             <h1 class="text-2xl font-bold">Register</h1>
                         </div>
 
-                        <form action="{{ route('register') }}" method="post">
+                        <form action="{{ route('registerAccount') }}" method="post">
                             @csrf
                             <div class="container grid grid-rows-3 gap-2">
                                 <div>
@@ -66,7 +66,7 @@
                                 </div>
 
                                 <div class="mt-2 flex justify-center items-center">
-                                    <p>Already have an account? <a href="{{ route('login') }}" class="underline text-blue-500">Login</a></p>
+                                    <p>Already have an account? <a href="{{ route('loginPage') }}" class="underline text-blue-500">Login</a></p>
                                 </div>
 
                             </div>

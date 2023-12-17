@@ -12,7 +12,7 @@
                     <li>
                         {{-- <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a> --}}
                         <a href="{{ route('dashboard', ['user_id' => 1]) }}" class="nav-header">Dashboard</a>
-                        <a href="{{ route('cv_builder') }}" class="nav-header">CV Builder</a>
+                        <a href="{{ route('cvBuilderPage') }}" class="nav-header">CV Builder</a>
                     </li>
                 </ul>
             </div>
@@ -38,8 +38,8 @@
                 </div>
             @endauth --}}
             <div>
-                <a href="{{ route('login') }}" class="btn-ghost">Login</a>
-                <a href="{{ route('register') }}" class="btn-solid">Register</a>
+                <a href="{{ route('loginPage') }}" class="btn-ghost">Login</a>
+                <a href="{{ route('registerPage') }}" class="btn-solid">Register</a>
             </div>
 
         </div>

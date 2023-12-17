@@ -66,13 +66,23 @@ Route::post('/change_password', [ProfileController::class, 'changePassword'])->n
 
 // Route::get('/{page}', [PageController::class, 'redirectPage'])->name('redirect.page');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::get('/register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register');
+// Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/cv_builder', [DocumentController::class, 'cv_builder'])->name('cv_builder');
-Route::post('/cv_builder', [DocumentController::class, 'store_data'])->name('store_data');
 
+Route::get('/login', [UserController::class, 'goToLoginPage'])->name('loginPage');
+Route::get('/register', [UserController::class, 'goToRegisterPage'])->name('registerPage');
+Route::post('/register', [UserController::class, 'registerAccount'])->name('registerAccount');
+
+// Route::get('/register', [RegisterController::class, 'index'])->name('register');
+// Route::post('/register', [RegisterController::class, 'store'])->name('register');
+
+Route::get('/cv_builder', [DocumentController::class, 'goToCvBuilder'])->name('cvBuilderPage');
+// nanti aktifin lagi
+// Route::post('/cv_builder', [DocumentController::class, 'store_data'])->name('store_data');
+
+Route::get('/cv_test/{username}/{document}', [DocumentController::class, 'test'])->name('test');
+Route::post('/cv_test/{username}/{document}', [DocumentController::class, 'storeTest'])->name('storeTest');
+Route::put('/cv_test/{username}/{document}', [DocumentController::class, 'storeTest'])->name('storeTest');
 
 Route::get('/dashboard/{user_id}', [DocumentController::class, 'index'])->name('dashboard');
 

@@ -52,8 +52,13 @@
 
             {{-- form step --}}
             <div class="form-step" id="step1">
-                <form action="{{ route('store_data')}}" method="post" enctype="multipart/form-data" id="stepForm1">
+                {{-- <form action="{{ route('store_data')}}" method="post" enctype="multipart/form-data" id="stepForm1"> --}}
+                <form action="{{ route('storeTest', ['username' => $doc->user->username, 'document' => $doc->id])}}" method="post" id="stepForm1">
                     @csrf
+                    @if ($doc->personal != null)
+                        @method('PUT')
+                    @endif
+
                     <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md">
                         <div class="container-form">
 
@@ -63,7 +68,7 @@
 
                             <div class="mt-4">
                                 <label for="personal_name" class="mb-2 block">Full Name</label>
-                                <input required type="text" name="personal_name" id="personal_name" placeholder="Insert you name, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4 @error('personal_name') border-2 border-red-500 @enderror" value="{{ old('personal_name') }}">
+                                <input required type="text" name="personal_name" id="personal_name" placeholder="Insert you name, e.g. Syauqi Frizman" class="w-full h-10 rounded pl-4 @error('personal_name') border-2 border-red-500 @enderror" value="{{ old('personal_name', $doc->personal ? $doc->personal->fullname : '') }}">
 
                                 @error('personal_name')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -137,11 +142,11 @@
                                             <p>PNG, JPG, JPEG (Max. 2MB)</p>
                                         </div>
                                     </div>
-                                    <input type="file" name="personal_photo" id="personal_photo" onchange="previewImage()" class="hidden @error('personal_photo') border-2 border-red-500 @enderror">
+                                    {{-- <input type="file" name="personal_photo" id="personal_photo" onchange="previewImage()" class="hidden @error('personal_photo') border-2 border-red-500 @enderror">
 
                                     @error('personal_photo')
                                         <p class="text-red-500 text-sm">{{ $message }}</p>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
 
                                 {{-- <div class="w-64 h-auto flex items-center justify-center">
@@ -184,7 +189,7 @@
                 </form>
             </div>
 
-            <div class="form-step hidden" id="step2">
+            {{-- <div class="form-step hidden" id="step2">
                 <form action="{{ route('store_data')}}" method="post" id="stepForm2">
                     @csrf
                     <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md">
@@ -279,7 +284,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> --}}
 
             {{--
             <div class="form-step hidden" id="step3">
@@ -448,7 +453,7 @@
             </div> --}}
         </div>
 
-        <script>
+        {{-- <script>
             let currentStep = 1;
             const form = document.getElementById('multiStepForm');
 
@@ -477,7 +482,7 @@
                     showStep(currentStep);
                 }
             }
-        </script>
+        </script> --}}
 
         {{-- ini untuk view export pdf --}}
         <div class="container-right">

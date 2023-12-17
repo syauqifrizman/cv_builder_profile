@@ -52,7 +52,7 @@
                                 </div>
 
                                 <div class="mt-2 flex justify-center items-center">
-                                    <p>Don't have an account? <a href="{{ route('register') }}" class="underline text-blue-500">Register</a></p>
+                                    <p>Don't have an account? <a href="{{ route('registerPage') }}" class="underline text-blue-500">Register</a></p>
                                 </div>
 
                             </div>
