@@ -86,13 +86,13 @@ class DocumentController extends Controller
 
         $validatedData = $request->validate([
             'title_doc' => 'required|max:25',
-            'is_public_checkbox' => 'nullable|boolean',
+            'is_public_checkbox' => 'sometimes|nullable|boolean',
         ]);
 
         $documentData = [
             'title' => $validatedData['title_doc'],
             'created_time' => $validatedData['created_time'] = now(),
-            'is_public' => $validatedData['is_public_checkbox'],
+            'is_public' => $validatedData['is_public_checkbox'] ?? false,
             'user_id' => $validatedData['user_id'] = Auth::user()->id,
         ];
 
