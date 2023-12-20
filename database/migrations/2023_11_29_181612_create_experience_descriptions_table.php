@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('experience_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
+            $table->text('description')->nullable();
             // tambahin foreign_key
             $table->foreignId('experience_id')->constrained('experiences')->onDelete('cascade');
             $table->timestamps();

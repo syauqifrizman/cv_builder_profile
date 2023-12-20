@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -38,6 +39,27 @@ class UserController extends Controller
         User::create($userData);
 
         return redirect()->route('loginPage')->with('success', 'Registration Success');
+    }
+
+    public function loginAccount(Request $request){
+        $data = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ];
+
+        if (Auth::attempt($data)) {
+            $user = Auth::user(); // Get the authenticated user
+            // $userId = $user->id;
+            return redirect()->route('dashboard', ['username' => $user->username])->with('success', 'Login Success');
+        }else{
+            session()->flash('error', 'Email atau Password Salah');
+            return redirect()->route('loginPage')->with('error', 'Invalid Credential');
+        }
+    }
+    public function logoutAccount()
+    {
+        Auth::logout();
+        return redirect()->route('loginPage');
     }
 
     private function getLastUserId(){

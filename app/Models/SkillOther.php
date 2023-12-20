@@ -11,6 +11,10 @@ class SkillOther extends Model
     protected $table ="skill_others";
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

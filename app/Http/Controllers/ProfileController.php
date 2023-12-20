@@ -9,10 +9,15 @@ use App\Models\User;
 class ProfileController extends Controller
 {
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('redirect.page', ['page' => 'login']);
+    public function goToProfile(){
+        return view('profile', [
+            "title" => "Profile Page"
+        ]);
+    }
+    public function goToPassword(){
+        return view('change_password', [
+            "title" => "Password Page"
+        ]);
     }
 
     public function update(Request $request)
@@ -24,22 +29,18 @@ class ProfileController extends Controller
         $request->validate([
             'username' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'confirm_password' => [
-                'required',
-                function ($attribute, $value, $fail) use ($user) {
-                    if (!Hash::check($value, $user->password)) {
-                        return $fail('The current password is incorrect.');
-                    }
-                },
-            ],
+            'confirm_password' => 'required|string',
         ]);
+        if (!Hash::check($request->input('confirm_password'), $user->password)) {
+            return redirect()->back()->with('error', 'The password is incorrect.');
+        }
 
         $user->username = $request->input('username');
         $user->email = $request->input('email');
 
         $user->save();
 
-        return redirect()->route('redirect.page', ['profile'])->with('success', 'Profile updated successfully.');
+        return redirect()->route('updatePage',)->with('success', 'Profile updated successfully.');
 
     }
 
@@ -56,13 +57,13 @@ class ProfileController extends Controller
 
         // Check if the old password matches the user's current password
         if (!Hash::check($request->input('old_password'), $user->password)) {
-            return redirect()->back()->withErrors(['old_password' => 'The old password is incorrect.'])->withInput();
+            return redirect()->back()->with('error', 'The old password is incorrect.');
         }
 
         // Update the user's password
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
 
-        return redirect()->route('redirect.page', ['profile'])->with('success', 'Password changed successfully.');
+        return redirect()->route('updatePage')->with('success', 'Password changed successfully.');
     }
 }

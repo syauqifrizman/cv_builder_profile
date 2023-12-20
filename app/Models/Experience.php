@@ -12,6 +12,10 @@ class Experience extends Model
     protected $table = 'experiences';
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function experienceDescription(): HasMany
     {
         // return $this->hasMany(Exp_Description::class, 'experience_id', 'experience_id');

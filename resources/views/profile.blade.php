@@ -2,9 +2,23 @@
 
 @section('content')
     <div class="flex justify-center items-center h-screen">
-        <form id="profileForm" action="{{ route('update') }}" method="post">
+        <form id="profileForm" action="{{ route('updateProfile') }}" method="post">
             @csrf
             <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md p-8 w-96">
+                @if (session()->has('error'))
+                    <div class="bg-red-50 rounded border border-solid border-red-50 p-2">
+                        <div class="flex justify-center items-center">
+                            <h1 class="text-lg text-red-800 italic">{{ session('error') }}</h1>
+                        </div>
+                    </div>
+                @endif
+                @if (session()->has('success'))
+                    <div class="bg-green-50 rounded border border-solid border-green-50 p-2">
+                        <div class="flex justify-center items-center">
+                            <h1 class="text-lg text-green-800 italic">{{ session('success') }}</h1>
+                        </div>
+                    </div>
+                @endif
                 <div class="pt-5">
                     <h1 class="text-2xl font-medium">Profile</h1>
                 </div>
@@ -34,7 +48,7 @@
                 </div>
                 <div class="mt-2 pb-5">
                     <p class="text-sm text-gray-600">Click the text below to change your password:</p>
-                    <a href="{{ route('redirect.page', ['change_password']) }}" class="text-blue-500 underline">Change Password</a>
+                    <a href="{{ route('changePasswordPage')}}" class="text-blue-500 underline">Change Password</a>
                 </div>
             </div>
             @if ($errors->any())

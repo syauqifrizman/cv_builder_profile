@@ -11,6 +11,10 @@ class ExperienceDescription extends Model
     protected $table = 'experience_descriptions';
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function experience(): BelongsTo
     {
         // return $this->belongsTo(Experience::class, 'experience_id', 'detail_id');

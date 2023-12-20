@@ -11,6 +11,10 @@ class ProjectDetail extends Model
     protected $table ="project_details";
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);

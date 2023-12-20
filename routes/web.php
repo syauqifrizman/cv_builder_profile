@@ -33,10 +33,6 @@ use Illuminate\Auth\Events\Logout;
 //     return view('login');
 // })->name('login');
 
-Route::get('/test', function () {
-    return view('archive.test');
-})->name('test');
-
 Route::get('/', function(){
     return view('home', ['title' => 'Home']);
 });
@@ -76,16 +72,44 @@ Route::post('/register', [UserController::class, 'registerAccount'])->name('regi
 // Route::get('/register', [RegisterController::class, 'index'])->name('register');
 // Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
-Route::get('/cv_builder', [DocumentController::class, 'goToCvBuilder'])->name('cvBuilderPage');
+Route::get('/cv_builder/create/{username}', [DocumentController::class, 'formRedirectCreateDocument'])->name('cvBuilderPage');
+Route::post('/cv_builder/create/{username}', [DocumentController::class, 'createDocument'])->name('create_document');
+
 // nanti aktifin lagi
 // Route::post('/cv_builder', [DocumentController::class, 'store_data'])->name('store_data');
+// Route::get('/cv_test/{username}/{document}', [DocumentController::class, 'test'])->name('test');
 
-Route::get('/cv_test/{username}/{document}', [DocumentController::class, 'test'])->name('test');
-Route::post('/cv_test/{username}/{document}', [DocumentController::class, 'storeTest'])->name('storeTest');
-Route::put('/cv_test/{username}/{document}', [DocumentController::class, 'storeTest'])->name('storeTest');
+Route::get('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'getPersonal'])->name('detail_personal');
+// Route::post('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'storePersonal'])->name('store_personal');
+Route::put('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'storePersonal'])->name('store_personal');
 
-Route::get('/dashboard/{user_id}', [DocumentController::class, 'index'])->name('dashboard');
+Route::get('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'getDetailExperience'])->name('detail_experience');
+// Route::post('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'storeExperience'])->name('store_experience');
+Route::put('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'storeExperience'])->name('store_experience');
 
-Route::get('/cv_builder/{username}/{document_id}', [DocumentController::class, 'getDetail'])->name('detail');
+Route::get('/cv_builder/project/{username}/{document}', [DocumentController::class, 'getDetailProject'])->name('detail_project');
+// Route::post('/cv_builder/project/{username}/{document}', [DocumentController::class, 'storeProject'])->name('store_project');
+Route::put('/cv_builder/project/{username}/{document}', [DocumentController::class, 'storeProject'])->name('store_project');
+
+Route::get('/cv_builder/education/{username}/{document}', [DocumentController::class, 'getDetailEducation'])->name('detail_education');
+Route::put('/cv_builder/education/{username}/{document}', [DocumentController::class, 'storeEducation'])->name('store_education');
+
+
+
+Route::get('/cv_builder/skillOther/{username}/{document}', [DocumentController::class, 'getDetailSkillOther'])->name('detail_skillOther');
+Route::put('/cv_builder/skillOther/{username}/{document}', [DocumentController::class, 'storeSkillOther'])->name('store_skillOther');
+
+
+Route::get('/dashboard/{username}', [DocumentController::class, 'index'])->name('dashboard');
+
 
 //Route::post('/dashboard', [UserController::class, 'login'])->name('login');
+
+
+Route::post('/login', [UserController::class, 'loginAccount'])->name('loginAccount');
+Route::get('/logout', [UserController::class, 'logoutAccount'])->name('logout');
+
+Route::get('/updateProfile', [ProfileController::class, 'goToProfile'])->name('updatePage');
+Route::post('/updateProfile', [ProfileController::class, 'update'])->name('updateProfile');
+Route::get('/changePassword', [ProfileController::class, 'goToPassword'])->name('changePasswordPage');
+Route::post('/changePassword', [ProfileController::class, 'changePassword'])->name('changePassword');

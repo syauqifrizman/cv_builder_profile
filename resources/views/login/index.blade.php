@@ -29,7 +29,7 @@
                             <h1 class="text-2xl font-bold flex justify-center items-center">Login</h1>
                         </div>
 
-                        <form action="{{ route('actionlogin') }}" method="post">
+                        <form action="{{ route('loginAccount') }}" method="post">
                             @csrf
                             <div class="container grid grid-rows-2 gap-4">
                                 <div>
@@ -54,6 +54,13 @@
                                 <div class="mt-2 flex justify-center items-center">
                                     <p>Don't have an account? <a href="{{ route('registerPage') }}" class="underline text-blue-500">Register</a></p>
                                 </div>
+                                @if (session()->has('error'))
+                                    <div class="bg-red-50 rounded border border-solid border-red-50 p-2">
+                                        <div class="flex justify-center items-center">
+                                            <h1 class="text-lg text-red-800 italic">{{ session('error') }}</h1>
+                                        </div>
+                                    </div>
+                                @endif
 
                             </div>
                         </form>

@@ -11,8 +11,19 @@
                 <ul>
                     <li>
                         {{-- <a href="{{ route('redirect.page', ['home']) }}" class="nav-header">Home</a> --}}
-                        <a href="{{ route('dashboard', ['user_id' => 1]) }}" class="nav-header">Dashboard</a>
-                        <a href="{{ route('cvBuilderPage') }}" class="nav-header">CV Builder</a>
+                        @auth
+                            @if(Auth::user()->id)
+                                <a href="{{ route('dashboard', ['username' => Auth::user()->username]) }}" class="nav-header">Dashboard</a>
+                                <a href="{{ route('cvBuilderPage', ['username' => Auth::user()->username]) }}" class="nav-header">CV Builder</a>
+                            @else
+                                <span class="nav-header">Dashboard</span>
+                                <span class="nav-header">CV Builder</span>
+                            @endif
+                            {{-- <a href="{{ route('cvBuilderPage') }}" class="nav-header">CV Builder</a>
+                            <a href="{{ route('dashboard', ['user_id' => Auth::user()->user_id ]) }}" class="nav-header">Dashboard</a> --}}
+
+                        @endauth
+
                     </li>
                 </ul>
             </div>
@@ -38,8 +49,13 @@
                 </div>
             @endauth --}}
             <div>
-                <a href="{{ route('loginPage') }}" class="btn-ghost">Login</a>
-                <a href="{{ route('registerPage') }}" class="btn-solid">Register</a>
+                @auth
+                    <a href="{{ route('updatePage') }}" class="btn-ghost">Profile</a>
+                    <a href="{{ route('logout') }}" class="btn-solid">Logout</a>
+                @else
+                    <a href="{{ route('loginPage') }}" class="btn-ghost">Login</a>
+                    <a href="{{ route('registerPage') }}" class="btn-solid">Register</a>
+                @endauth
             </div>
 
         </div>

@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('personals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('document_id')->unique()->constrained('documents')->onDelete('cascade');
-            $table->string('fullname', 255);
-            $table->string('domicile', 255);
-            $table->string('email', 255);
-            $table->string('phone_number', 255);
-            $table->string('linkedin_url', 255);
+            $table->string('fullname', 255)->nullable();
+            $table->string('domicile', 255)->nullable();
+            $table->string('email', 255)->nullable();
+            $table->string('phone_number', 255)->nullable();
+            $table->string('linkedin_url', 255)->nullable();
             $table->string('portofolio_url', 255)->nullable();
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('profile_image')->nullable();
             $table->timestamps();
         });

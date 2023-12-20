@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('document_id')->constrained('documents')->onDelete('cascade');
-            $table->string('education_name', 255);
-            $table->string('education_location', 255);
-            $table->string('education_level', 255);
-            $table->string('education_major', 255);
+            $table->string('education_name', 255)->nullable();
+            $table->string('education_location', 255)->nullable();
+            $table->string('education_level', 255)->nullable();
+            $table->string('education_major', 255)->nullable();
             $table->float('current_score', 5, 2)->nullable();
             $table->float('max_score', 5, 2)->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->text('related_coursework')->nullable();
             $table->timestamps();
         });

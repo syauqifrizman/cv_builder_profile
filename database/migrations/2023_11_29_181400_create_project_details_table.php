@@ -16,7 +16,7 @@ return new class extends Migration
             // Menambahkan foreign key
             $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
 
-            $table->string('description', 255);
+            $table->string('description', 255)->nullable();
             $table->timestamps();
         });
     }

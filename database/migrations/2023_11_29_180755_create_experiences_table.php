@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name', 255);
-            $table->string('position', 255);
-            $table->string('company_location', 255);
+            $table->string('company_name', 255)->nullable();
+            $table->string('position', 255)->nullable();
+            $table->string('company_location', 255)->nullable();
             $table->string('company_description', 255)->nullable();
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             // foreign key type_id
             $table->foreignId('document_id')->constrained('documents')->onDelete('cascade');
             $table->foreignId('type_id')->constrained('types');

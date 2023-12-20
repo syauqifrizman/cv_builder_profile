@@ -11,6 +11,10 @@ class Education extends Model
     protected $table = 'educations';
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

@@ -16,9 +16,9 @@ return new class extends Migration
             // Menambahkan foreign key
             $table->foreignId('document_id')->constrained('documents')->onDelete('cascade');
 
-            $table->string('project_name', 255);
+            $table->string('project_name', 255)->nullable();
             // $table->date('end_date');
-            $table->year('year');
+            $table->year('year')->nullable();
             $table->string('project_url', 255)->nullable();
             $table->timestamps();
         });

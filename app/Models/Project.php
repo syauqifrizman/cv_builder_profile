@@ -12,6 +12,10 @@ class Project extends Model
     protected $table ="projects";
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function document(): BelongsTo
     {
         return $this->belongsTo(Document::class);

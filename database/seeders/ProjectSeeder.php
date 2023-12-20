@@ -25,7 +25,13 @@ class ProjectSeeder extends Seeder
                 'year' => 2016,
                 'project_url' => null,
                 'document_id' => 1,
-            ]
+            ],
+            [
+                'project_name' => null,
+                'year' => null,
+                'project_url' => null,
+                'document_id' => 2,
+            ],
         ];
         DB::table('projects')->insert($projects);
     }

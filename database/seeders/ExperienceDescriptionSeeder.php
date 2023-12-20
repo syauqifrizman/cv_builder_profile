@@ -27,8 +27,8 @@ class ExperienceDescriptionSeeder extends Seeder
                 'experience_id'=> 2,
             ],
             [
-                'description'=> 'Membangun alat dan otomatisasi untuk mendukung proses pengembangan dan pengujian.',
-                'experience_id'=> 2,
+                'description'=> 'Membangun alat dan otomatisasi untuk mendukung proses pengembangan dan pengujian pada website fakultas.',
+                'experience_id'=> 3,
             ],
         ];
         //

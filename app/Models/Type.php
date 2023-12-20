@@ -11,6 +11,10 @@ class Type extends Model
     protected $table = 'types';
     protected $primaryKey = 'id';
 
+    protected $guarded = [
+        'id'
+    ];
+
     public function experience(): HasOne
     {
         // return $this->hasOne(Experience::class, 'type_id', 'type_id');
