@@ -19,12 +19,8 @@ class ProjectDetailSeeder extends Seeder
                 'project_id' => 1,
             ],
             [
-                'description' => 'Enable ask quetion anonymously to Professors',
-                'project_id' => 2,
-            ],
-            [
                 'description' => null,
-                'project_id' => 3,
+                'project_id' => 2,
             ],
         ];
         DB::table('project_details')->insert($project_details);

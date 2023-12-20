@@ -21,12 +21,6 @@ class ProjectSeeder extends Seeder
                 'document_id' => 1,
             ],
             [
-                'project_name' => 'Ramen Web App',
-                'year' => 2016,
-                'project_url' => null,
-                'document_id' => 1,
-            ],
-            [
                 'project_name' => null,
                 'year' => null,
                 'project_url' => null,

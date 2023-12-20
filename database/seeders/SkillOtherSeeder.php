@@ -24,11 +24,6 @@ class SkillOtherSeeder extends Seeder
                 'description' => 'MySQL, Postgres, AWS, Git, BigQuery, Apache Spark',
                 'document_id' => 2,
             ],
-            [
-                'title' => 'Other',
-                'description' => 'Data structures and algorithms',
-                'document_id' => 1,
-            ],
         ];
         DB::table('skill_others')->insert($skill_others);
     }

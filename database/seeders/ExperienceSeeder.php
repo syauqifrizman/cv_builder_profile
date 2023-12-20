@@ -26,16 +26,6 @@ class ExperienceSeeder extends Seeder
             ],
             [
                 'company_name'=> 'HIMTI',
-                'position'=> 'Lead Web Dev Division',
-                'company_location'=> 'Jakarta, Indonesia',
-                'company_description'=> null,
-                'start_date'=>'2021-01-01',
-                'end_date' => '2023-06-25',
-                'type_id' => 2,
-                'document_id' => 1,
-            ],
-            [
-                'company_name'=> 'HIMTI',
                 'position'=> 'Education Division',
                 'company_location'=> 'Jakarta, Indonesia',
                 'company_description'=> null,

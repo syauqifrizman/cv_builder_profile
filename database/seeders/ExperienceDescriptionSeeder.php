@@ -19,16 +19,8 @@ class ExperienceDescriptionSeeder extends Seeder
                 'experience_id'=> 1,
             ],
             [
-                'description'=> 'Mengelola dan mengoptimalkan database untuk meningkatkan kinerja kueri.',
-                'experience_id'=> 1,
-            ],
-            [
-                'description'=> 'Merancang dan mengimplementasikan fitur-fitur kunci yang meningkatkan fungsionalitas dan kinerja aplikasi.',
-                'experience_id'=> 2,
-            ],
-            [
                 'description'=> 'Membangun alat dan otomatisasi untuk mendukung proses pengembangan dan pengujian pada website fakultas.',
-                'experience_id'=> 3,
+                'experience_id'=> 2,
             ],
         ];
         //
