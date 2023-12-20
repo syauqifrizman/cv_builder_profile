@@ -3,10 +3,10 @@
 @section('cv_form')
 {{-- education --}}
 <div class="form-step" id="step4">
-    <form action="{{ route('store_education', ['username' => $doc->user->username, 'document' => $doc->id])}}" method="post" id="stepForm4">
+    <form action="" method="post" id="stepForm4">
         @csrf
         {{-- @if ($doc->experience != null) --}}
-            @method('PUT')
+            {{-- @method('PUT') --}}
         {{-- @endif --}}
 
         <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md">
@@ -89,7 +89,7 @@
                         <div class="mt-4 flex justify-between gap-4">
                             <div class="w-1/2">
                                 <label for="start_date" class="mb-2 block">Start Date</label>
-                                <input type="date" name="start_date" id="start_date" class="w-full h-10 rounded pl-4 @error('start_date') border-2 border-red-500 @enderror" value="{{ old('start_date', $education->start_date) }}">
+                                <input type="date" name="start_date" id="start_date" class="w-full h-10 rounded pl-4 @error('start_date') border-2 border-red-500 @enderror" value="{{ old('start_date', $education->star_date) }}">
 
                                 @error('start_date')
                                 <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -123,11 +123,9 @@
             </div>
 
             <div class="mt-5 pb-5 flex justify-end items-end">
-                <button type="button" id="resetButton" class="bg-white rounded-md px-6 py-2 border border-sky-800 hover:bg-sky-50">Reset</button>
+                <button type="button" id="prevBtn" onclick="window.location.href='{{ route('detail_project', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'read']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Back</button>
 
-                <button type="button" id="prevBtn" onclick="window.location.href='{{ route('detail_project', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'update']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Back</button>
-
-                <button type="submit" id="nextBtn" onclick="nextStep()" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Next</button>
+                <button type="button" id="nextBtn" onclick="window.location.href='{{ route('detail_skillOther', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'read']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Next</button>
             </div>
         </div>
     </form>

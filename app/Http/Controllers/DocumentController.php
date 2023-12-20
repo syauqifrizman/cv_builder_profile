@@ -21,6 +21,18 @@ class DocumentController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+    public function cekUser($username, Document $document){
+        $authenticatedUser = Auth::user();
+        $getUser = User::where('username', $username)->firstOrFail();
+        $getDocumentUser = $document->user_id;
+
+        if ($getUser->id != $getDocumentUser) {
+            abort(404);
+        }
+        if ($getUser->id != $authenticatedUser->id) {
+            abort(404);
+        }
+    }
 
     public function index($username){
 
@@ -28,12 +40,36 @@ class DocumentController extends Controller
         // soalnya kalo kita langsung ketik /dashboard/{username} otomatis bakal ketampil juga
         // semua document yg dipunya dari username itu
 
+        $searchName = request('search');
+        $sortBy = request('sortBy', 'default'); // Default sort option
+
         $getUser = User::where('username', $username)->firstOrFail();
-        $documents = $this->getAllDocumentUser($getUser->id);
+
+        // Determine the appropriate method based on the sort option
+        switch ($sortBy) {
+            case 'titlea_z':
+                $documents = $this->getAllDocumentUserTitleAZ($getUser->id, $searchName);
+                break;
+            case 'titlez_a':
+                $documents = $this->getAllDocumentUserTitleZA($getUser->id, $searchName);
+                break;
+            case 'time':
+                $documents = $this->getAllDocumentUserTime($getUser->id, $searchName);
+                break;
+            default:
+                $documents = $this->getAllDocumentUser($getUser->id, $searchName);
+                break;
+        }
+
+        $publicDocument = Document::with(['education', 'experience.experienceDescription', 'experience.type', 'personal', 'project.projectDetail', 'skillOther', 'user'])->where('is_public', true)->get();
 
         return view('dashboard', [
+            'publicDocs' => $publicDocument,
             'docs' => $documents,
-            "title" => $getUser->username
+            "title" => $getUser->username,
+            'title' => $getUser->username,
+            'selectedSort' => $sortBy, // Pass the selected sort option to the view
+            'searchName' => $searchName, // Pass the search name to the view
         ]);
     }
 
@@ -50,11 +86,13 @@ class DocumentController extends Controller
 
         $validatedData = $request->validate([
             'title_doc' => 'required|max:25',
+            'is_public_checkbox' => 'nullable|boolean',
         ]);
 
         $documentData = [
             'title' => $validatedData['title_doc'],
             'created_time' => $validatedData['created_time'] = now(),
+            'is_public' => $validatedData['is_public_checkbox'],
             'user_id' => $validatedData['user_id'] = Auth::user()->id,
         ];
 
@@ -133,42 +171,44 @@ class DocumentController extends Controller
         ]);
     }
 
-    public function getPersonal($username, Document $document){
-        // ini harus validasi beneran user nya dia bukan,
-        // jangan asal ganti document di url, tapi tetap ditampilin
+    public function getPersonal($username, Document $document, $type){
 
-        // $selectedDocument = $this->getDocumentByID($document_id);
-        // dd($selectedDocument);
-
-        // $selectedDocument = Document::query()->find($document_id);
-
-        return view('form.test_personal', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
+        if($type == 'update'){
+            $this->cekUser($username, $document);
+            return view('form.test_personal', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
+        else if($type == 'read'){
+            return view('form.public_doc.read_personal', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
     }
 
-    public function test($username, Document $document){
-        // $selectedDocument = $this->getDocumentByID($document_id);
-        // dd($selectedDocument);
+    // public function test($username, Document $document){
+    //     // $selectedDocument = $this->getDocumentByID($document_id);
+    //     // dd($selectedDocument);
 
-        // $selectedDocument = Document::query()->find($document_id);
+    //     // $selectedDocument = Document::query()->find($document_id);
 
-        return view('form.test_personal', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
-    }
+    //     return view('form.test_personal', [
+    //         'doc' => $document,
+    //         "title" => $document->title
+    //     ]);
+    // }
 
     public function storePersonal(Request $request, $username, Document $document){
         $validatedData = $request->validate([
-            'personal_name' => 'required',
-            'personal_location' => 'required',
+            'personal_name' => 'required|max:100',
+            'personal_location' => 'required|max:50',
             'personal_email' => 'required|email:dns',
-            'personal_number' => 'required',
+            'personal_number' => 'required|numeric',
             'personal_linkedin' => 'required|url',
             'personal_portofolio' => 'url|nullable',
-            'personal_description' => 'required|max:255',
+            'personal_description' => 'required|max:1000',
             'personal_photo' => 'image|mimes:jpg,png|nullable',
         ]);
 
@@ -195,7 +235,8 @@ class DocumentController extends Controller
 
         return redirect()->route('detail_experience', [
             'username' => $username,
-            'document' => $updatedDocument
+            'document' => $updatedDocument,
+            'type' => 'update'
         ]);
         // return view('form.test_experience', [
         //     'doc' => $updatedDocument,
@@ -203,26 +244,35 @@ class DocumentController extends Controller
         // ]);
     }
 
-    public function getDetailExperience($username, Document $document){
+    public function getDetailExperience($username, Document $document, $type){
 
         // ini harus validasi beneran user nya dia bukan,
         // jangan asal ganti document di url, tapi tetap ditampilin
 
-        return view('form.test_experience', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
+        if($type == 'update'){
+            $this->cekUser($username, $document);
+            return view('form.test_experience', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
+        else if($type == 'read'){
+            return view('form.public_doc.read_experience', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
     }
 
     public function storeExperience(Request $request, $username, Document $document){
         $validatedData = $request->validate([
-            'experience_company_name' => 'max:50|nullable',
-            'experience_company_position' => 'max:50|nullable',
-            'experience_company_location' => 'max:50|nullable',
+            'experience_company_name' => 'max:50|required',
+            'experience_company_position' => 'max:50|required',
+            'experience_company_location' => 'max:50|required',
             'experience_company_description' => 'max:255|nullable',
-            'experience_company_start_date' => 'date|nullable|before_or_equal:experience_company_end_date',
-            'experience_company_end_date' => 'date|nullable|after_or_equal:experience_company_start_date',
-            'experience_description_table' => 'max:255|nullable',
+            'experience_company_start_date' => 'date|required|before_or_equal:experience_company_end_date',
+            'experience_company_end_date' => 'date|required|after_or_equal:experience_company_start_date',
+            'experience_description_table' => 'max:255|required',
         ]);
 
         $experienceData = [
@@ -282,31 +332,41 @@ class DocumentController extends Controller
         // nanti harusnya ke detail project, tapi untuk saat ini ke dashboard aja dulu
         return redirect()->route('detail_project', [
             'username' => $username,
-            'document' => $updatedDocument
+            'document' => $updatedDocument,
+            'type' => 'update'
         ]);
 
         // return ke dashboard
         // return $this->index($username);
     }
 
-    public function getDetailProject($username, Document $document){
+    public function getDetailProject($username, Document $document, $type){
         // ini harus validasi beneran user nya dia bukan,
         // jangan asal ganti document di url, tapi tetap ditampilin
 
         // $selectedDocument = $this->getDocumentByID($document_id);
 
-        return view('form.test_project', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
+        if($type == 'update'){
+            $this->cekUser($username, $document);
+            return view('form.test_project', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
+        else if($type == 'read'){
+            return view('form.public_doc.read_project', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
     }
 
     public function storeProject(Request $request, $username, Document $document){
         $validatedData = $request->validate([
-            'project_name' => 'max:50|nullable',
+            'project_name' => 'max:50|required',
             'project_year' => 'numeric|regex:/^\d{4}$/|nullable|',
             'project_url' => 'url|nullable',
-            'project_detail' => 'max:255|nullable',
+            'project_detail' => 'max:255|required',
         ]);
 
         $projectData = [
@@ -353,35 +413,45 @@ class DocumentController extends Controller
 
         return redirect()->route('detail_education', [
             'username' => $username,
-            'document' => $updatedDocument
+            'document' => $updatedDocument,
+            'type' => 'update'
         ]);
 
         // return ke dashboard
         // return $this->index($username);
     }
 
-    public function getDetailEducation($username, Document $document){
+    public function getDetailEducation($username, Document $document, $type){
         // ini harus validasi beneran user nya dia bukan,
         // jangan asal ganti document di url, tapi tetap ditampilin
 
         // $selectedDocument = $this->getDocumentByID($document_id);
 
-        return view('form.test_education', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
+        if($type == 'update'){
+            $this->cekUser($username, $document);
+            return view('form.test_education', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
+        else if($type == 'read'){
+            return view('form.public_doc.read_education', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
     }
 
     public function storeEducation(Request $request, $username, Document $document){
         $validatedData = $request->validate([
-            'education_name' => 'max:50|nullable',
-            'education_location' => 'max:50|nullable',
-            'education_level' => 'max:50|nullable',
-            'education_major' => 'max:50|nullable',
+            'education_name' => 'max:50|required',
+            'education_location' => 'max:50|required',
+            'education_level' => 'max:50|required',
+            'education_major' => 'max:50|required',
             'current_score' => 'numeric|nullable|lte:max_score',
             'max_score' => 'numeric|nullable',
-            'start_date' => 'date|nullable|before_or_equal:end_date',
-            'end_date' => 'date|nullable|after_or_equal:start_date',
+            'start_date' => 'date|required|before_or_equal:end_date',
+            'end_date' => 'date|required|after_or_equal:start_date',
             'related_coursework' => 'max:255|nullable',
         ]);
 
@@ -417,29 +487,39 @@ class DocumentController extends Controller
 
         return redirect()->route('detail_skillOther', [
             "username" => $username,
-            "document" => $updatedDocument
+            "document" => $updatedDocument,
+            'type' => 'update'
         ]);
 
         // return ke dashboard
         // return $this->index($username);
     }
 
-    public function getDetailSkillOther($username, Document $document){
+    public function getDetailSkillOther($username, Document $document, $type){
         // ini harus validasi beneran user nya dia bukan,
         // jangan asal ganti document di url, tapi tetap ditampilin
 
         // $selectedDocument = $this->getDocumentByID($document_id);
 
-        return view('form.test_skillOther', [
-            'doc' => $document,
-            "title" => $document->title
-        ]);
+        if($type == 'update'){
+            $this->cekUser($username, $document);
+            return view('form.test_skillOther', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
+        else if($type == 'read'){
+            return view('form.public_doc.read_skillOther', [
+                'doc' => $document,
+                "title" => $document->title
+            ]);
+        }
     }
 
     public function storeSkillOther(Request $request, $username, Document $document){
         $validatedData = $request->validate([
-            'skill_other_title' => 'max:20|nullable',
-            'skill_other_description' => 'max:255|nullable',
+            'skill_other_title' => 'max:20|required',
+            'skill_other_description' => 'max:255|required',
         ]);
 
         $skillOtherData = [
@@ -466,26 +546,26 @@ class DocumentController extends Controller
         return $this->index($username);
     }
 
-    public function isPersonalNull(Document $document){
-        if($document->personal == null){
-            return true;
-        }
-        return false;
-    }
+    // public function isPersonalNull(Document $document){
+    //     if($document->personal == null){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    public function isExperienceNull(Document $document){
-        if($document->experience == null){
-            return true;
-        }
-        return false;
-    }
+    // public function isExperienceNull(Document $document){
+    //     if($document->experience == null){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    public function isExperienceDescriptionNull(Document $document){
-        if($document->experience->description == null){
-            return true;
-        }
-        return false;
-    }
+    // public function isExperienceDescriptionNull(Document $document){
+    //     if($document->experience->description == null){
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     // public function store_data(Request $request){
     //     $validatedData = $request->validate([
@@ -532,8 +612,59 @@ class DocumentController extends Controller
 
 
 
-    public function getAllDocumentUser($user_id){
-        $documents = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])->where('user_id', $user_id)->get();
+    public function getAllDocumentUser($user_id, $searchName){
+        $query = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])
+        ->where('user_id', $user_id);
+
+        // Add search condition if a name is provided
+        if ($searchName) {
+            $query->where('title', 'LIKE', '%' . $searchName . '%');
+        }
+
+        // Order by created_time (you can adjust this based on your needs)
+        $documents = $query->get();
+
+        return $documents;
+    }
+    public function getAllDocumentUserTime($user_id, $searchName){
+        $query = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])
+        ->where('user_id', $user_id);
+
+        // Add search condition if a name is provided
+        if ($searchName) {
+            $query->where('title', 'LIKE', '%' . $searchName . '%');
+        }
+
+        // Order by created_time (you can adjust this based on your needs)
+        $documents = $query->orderBy('created_time', 'desc')->get();
+
+        return $documents;
+    }
+    public function getAllDocumentUserTitleAZ($user_id, $searchName){
+        $query = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])
+        ->where('user_id', $user_id);
+
+        // Add search condition if a name is provided
+        if ($searchName) {
+            $query->where('title', 'LIKE', '%' . $searchName . '%');
+        }
+
+        // Order by created_time (you can adjust this based on your needs)
+        $documents = $query->orderBy('title', 'asc')->get();
+
+        return $documents;
+    }
+    public function getAllDocumentUserTitleZA($user_id, $searchName){
+        $query = Document::with(['education', 'experience', 'personal', 'project', 'skillOther', 'user'])
+        ->where('user_id', $user_id);
+
+        // Add search condition if a name is provided
+        if ($searchName) {
+            $query->where('title', 'LIKE', '%' . $searchName . '%');
+        }
+
+        // Order by created_time (you can adjust this based on your needs)
+        $documents = $query->orderBy('title', 'desc')->get();
 
         return $documents;
     }

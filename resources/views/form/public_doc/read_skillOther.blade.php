@@ -3,10 +3,10 @@
 @section('cv_form')
 {{-- skill other --}}
 <div class="form-step" id="step5">
-    <form action="{{ route('store_skillOther', ['username' => $doc->user->username, 'document' => $doc->id])}}" method="post" id="stepForm5">
+    <form action="" method="post" id="stepForm5">
         @csrf
         {{-- @if ($doc->experience != null) --}}
-            @method('PUT')
+            {{-- @method('PUT') --}}
         {{-- @endif --}}
 
         <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md">
@@ -47,11 +47,7 @@
             </div>
 
             <div class="mt-5 pb-5 flex justify-end items-end">
-                <button type="button" id="resetButton" class="bg-white rounded-md px-6 py-2 border border-sky-800 hover:bg-sky-50">Reset</button>
-
-                <button type="button" id="prevBtn" onclick="window.location.href='{{ route('detail_education', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'update']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Back</button>
-
-                <button type="submit" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Save</button>
+                <button type="button" id="prevBtn" onclick="window.location.href='{{ route('detail_education', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'read']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Back</button>
             </div>
         </div>
     </form>

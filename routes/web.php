@@ -34,7 +34,7 @@ use Illuminate\Auth\Events\Logout;
 // })->name('login');
 
 Route::get('/', function(){
-    return view('home', ['title' => 'Home']);
+    return view('login.index', ['title' => 'Login Page']);
 });
 
 // Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
@@ -79,31 +79,26 @@ Route::post('/cv_builder/create/{username}', [DocumentController::class, 'create
 // Route::post('/cv_builder', [DocumentController::class, 'store_data'])->name('store_data');
 // Route::get('/cv_test/{username}/{document}', [DocumentController::class, 'test'])->name('test');
 
-Route::get('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'getPersonal'])->name('detail_personal');
+Route::get('/cv_builder/personal/{username}/{document}/{type}', [DocumentController::class, 'getPersonal'])->name('detail_personal');
 // Route::post('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'storePersonal'])->name('store_personal');
 Route::put('/cv_builder/personal/{username}/{document}', [DocumentController::class, 'storePersonal'])->name('store_personal');
 
-Route::get('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'getDetailExperience'])->name('detail_experience');
+Route::get('/cv_builder/experience/{username}/{document}/{type}', [DocumentController::class, 'getDetailExperience'])->name('detail_experience');
 // Route::post('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'storeExperience'])->name('store_experience');
 Route::put('/cv_builder/experience/{username}/{document}', [DocumentController::class, 'storeExperience'])->name('store_experience');
 
-Route::get('/cv_builder/project/{username}/{document}', [DocumentController::class, 'getDetailProject'])->name('detail_project');
+Route::get('/cv_builder/project/{username}/{document}/{type}', [DocumentController::class, 'getDetailProject'])->name('detail_project');
 // Route::post('/cv_builder/project/{username}/{document}', [DocumentController::class, 'storeProject'])->name('store_project');
 Route::put('/cv_builder/project/{username}/{document}', [DocumentController::class, 'storeProject'])->name('store_project');
 
-Route::get('/cv_builder/education/{username}/{document}', [DocumentController::class, 'getDetailEducation'])->name('detail_education');
+Route::get('/cv_builder/education/{username}/{document}/{type}', [DocumentController::class, 'getDetailEducation'])->name('detail_education');
 Route::put('/cv_builder/education/{username}/{document}', [DocumentController::class, 'storeEducation'])->name('store_education');
 
-
-
-Route::get('/cv_builder/skillOther/{username}/{document}', [DocumentController::class, 'getDetailSkillOther'])->name('detail_skillOther');
+Route::get('/cv_builder/skillOther/{username}/{document}/{type}', [DocumentController::class, 'getDetailSkillOther'])->name('detail_skillOther');
 Route::put('/cv_builder/skillOther/{username}/{document}', [DocumentController::class, 'storeSkillOther'])->name('store_skillOther');
 
 
 Route::get('/dashboard/{username}', [DocumentController::class, 'index'])->name('dashboard');
-
-
-//Route::post('/dashboard', [UserController::class, 'login'])->name('login');
 
 
 Route::post('/login', [UserController::class, 'loginAccount'])->name('loginAccount');

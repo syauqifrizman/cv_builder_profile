@@ -20,7 +20,7 @@ class ProjectDetailSeeder extends Seeder
             ],
             [
                 'description' => 'Enable ask quetion anonymously to Professors',
-                'project_id' => 1,
+                'project_id' => 2,
             ],
             [
                 'description' => null,

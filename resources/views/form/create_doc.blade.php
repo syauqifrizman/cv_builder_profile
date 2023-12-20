@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-<div class="mx-auto w-1/4 h-screen flex items-center">
+<div class="mx-auto w-1/3 h-screen flex items-center">
     <div class="w-full bg-sky-50 rounded border border-solid border-sky-50 p-5 ">
         @if (session()->has('success'))
             <div class="bg-green-50 rounded border border-solid border-green-50 p-2">
@@ -22,6 +22,15 @@
                         <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="mt-4 flex gap-2">
+                    <input type="checkbox" name="is_public_checkbox" id="is_public_checkbox" class="w-4 @error('is_public_checkbox') border-2 border-red-500 @enderror" value="1" {{ old('is_public_checkbox') ? 'checked' : '' }}>
+                    <p class="text-sm">Make document public (it will show in the template section)</p>
+                </div>
+                @error('is_public_checkbox')
+                    <div>
+                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                    </div>
+                @enderror
             </div>
 
             <div class="mt-4 flex justify-center items-center">

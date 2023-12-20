@@ -3,10 +3,10 @@
 @section('cv_form')
     {{-- personal --}}
     <div class="form-step" id="step1">
-        <form action="{{ route('store_personal', ['username' => $doc->user->username, 'document' => $doc->id]) }}" method="post" id="stepForm1">
+        <form action="" method="post" id="stepForm1">
             @csrf
             {{-- @if ($doc->personal != null) --}}
-                @method('PUT')
+                {{-- @method('PUT') --}}
             {{-- @endif --}}
 
             <div class="bg-sky-50 mt-6 pr-6 pl-6 mb-6 rounded-md">
@@ -131,9 +131,7 @@
                 </div>
 
                 <div class="mt-5 pb-5 flex justify-end items-end">
-                    <button type="button" id="resetButton" class="bg-white rounded-md px-6 py-2 border border-sky-800 hover:bg-sky-50">Reset</button>
-
-                    <button type="submit" id="save" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Save & Next</button>
+                    <button type="button" id="save" onclick="window.location.href='{{ route('detail_experience', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => 'read']) }}'" class="bg-sky-800 text-white rounded-md px-6 py-2 ml-4 border border-sky-800 hover:bg-sky-700">Next</button>
                 </div>
             </div>
         </form>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('title', 255);
+            $table->boolean('is_public');
             $table->dateTime('created_time');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
