@@ -167,7 +167,8 @@ class DocumentController extends Controller
 
         return redirect()->route('detail_personal', [
             'username' => $username,
-            'document' => $newDocument
+            'document' => $newDocument,
+            'type' => 'update'
         ]);
     }
 
