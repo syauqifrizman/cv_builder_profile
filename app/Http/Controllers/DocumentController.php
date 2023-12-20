@@ -182,10 +182,12 @@ class DocumentController extends Controller
             ]);
         }
         else if($type == 'read'){
-            return view('form.public_doc.read_personal', [
-                'doc' => $document,
-                "title" => $document->title
-            ]);
+            if($document->is_public == true){
+                return view('form.public_doc.read_personal', [
+                    'doc' => $document,
+                    "title" => $document->title
+                ]);
+            }
         }
     }
 
@@ -258,10 +260,12 @@ class DocumentController extends Controller
             ]);
         }
         else if($type == 'read'){
-            return view('form.public_doc.read_experience', [
-                'doc' => $document,
-                "title" => $document->title
-            ]);
+            if($document->is_public == true){
+                return view('form.public_doc.read_experience', [
+                    'doc' => $document,
+                    "title" => $document->title
+                ]);
+            }
         }
     }
 
@@ -355,10 +359,12 @@ class DocumentController extends Controller
             ]);
         }
         else if($type == 'read'){
-            return view('form.public_doc.read_project', [
-                'doc' => $document,
-                "title" => $document->title
-            ]);
+            if($document->is_public == true){
+                return view('form.public_doc.read_project', [
+                    'doc' => $document,
+                    "title" => $document->title
+                ]);
+            }
         }
     }
 
@@ -436,10 +442,12 @@ class DocumentController extends Controller
             ]);
         }
         else if($type == 'read'){
-            return view('form.public_doc.read_education', [
-                'doc' => $document,
-                "title" => $document->title
-            ]);
+            if($document->is_public == true){
+                return view('form.public_doc.read_education', [
+                    'doc' => $document,
+                    "title" => $document->title
+                ]);
+            }
         }
     }
 
@@ -510,10 +518,12 @@ class DocumentController extends Controller
             ]);
         }
         else if($type == 'read'){
-            return view('form.public_doc.read_skillOther', [
-                'doc' => $document,
-                "title" => $document->title
-            ]);
+            if($document->is_public == true){
+                return view('form.public_doc.read_skillOther', [
+                    'doc' => $document,
+                    "title" => $document->title
+                ]);
+            }
         }
     }
 
