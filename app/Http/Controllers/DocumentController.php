@@ -188,6 +188,9 @@ class DocumentController extends Controller
                     "title" => $document->title
                 ]);
             }
+            else{
+                abort(404);
+            }
         }
     }
 
@@ -265,6 +268,9 @@ class DocumentController extends Controller
                     'doc' => $document,
                     "title" => $document->title
                 ]);
+            }
+            else{
+                abort(404);
             }
         }
     }
@@ -365,6 +371,9 @@ class DocumentController extends Controller
                     "title" => $document->title
                 ]);
             }
+            else{
+                abort(404);
+            }
         }
     }
 
@@ -448,6 +457,9 @@ class DocumentController extends Controller
                     "title" => $document->title
                 ]);
             }
+            else{
+                abort(404);
+            }
         }
     }
 
@@ -523,6 +535,9 @@ class DocumentController extends Controller
                     'doc' => $document,
                     "title" => $document->title
                 ]);
+            }
+            else{
+                abort(404);
             }
         }
     }
