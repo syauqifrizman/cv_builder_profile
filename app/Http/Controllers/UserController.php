@@ -41,6 +41,15 @@ class UserController extends Controller
         return redirect()->route('loginPage')->with('success', 'Registration Success');
     }
 
+    public function loggedIn(){
+        if (Auth::check()) {
+            return redirect()->route('dashboard', ['username' => Auth::user()->username]);
+        }
+        else{
+            return view('login.index', ['title' => 'Login Page']);
+        }
+    }
+
     public function loginAccount(Request $request){
         $data = [
             'email' => $request->input('email'),

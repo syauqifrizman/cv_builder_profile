@@ -62,7 +62,7 @@
                 <div id="searchDocument" class="flex items-center">
                     <form action="{{ route('dashboard', ['username' => Auth::user()->username]) }}" method="GET" class="flex">
                         <input type="text" name="search" placeholder="Search by document name" value="{{ $searchName }}" class="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring focus:border-sky-500">
-                        <button type="submit" class="p-2 bg-sky-500 text-white rounded-r-md hover:bg-sky-600 focus:outline-none focus:ring focus:border-sky-500">Search</button>
+                        <button type="submit" class="p-2 bg-sky-800 text-white rounded-r-md hover:bg-sky-700 focus:outline-none focus:ring focus:border-sky-500 transition duration-150">Search</button>
                     </form>
                 </div>
 
@@ -91,18 +91,26 @@
 
             <div class="grid grid-cols-4 gap-4">
                 @foreach ($docs as $doc)
-                    <div class="flex items-end basis-1/6 m-5 h-48 border-2 border-sky-200 rounded-md">
-                        <a href="{{ route('detail_personal', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => "update"]) }}" class="w-full">
-                            <div class="p-2 bg-sky-200">
-                                <div class="font-semibold">
-                                    {{ $doc->title }}
+                <div class="flex items-end m-5 h-48 border-2 border-sky-200 rounded-md">
+                    <div class="flex flex-col w-full rounded-md">
+                        <div class="">
+                            <a href="{{ route('detail_personal', ['username' => $doc->user->username, 'document' => $doc->id, 'type' => "update"]) }}" class="w-full flex-grow">
+                                <div class="p-2 bg-sky-200 h-full">
+                                    <div class="font-semibold">
+                                        {{ $doc->title }}
+                                    </div>
+                                    <div class="text-sm text-gray-600">
+                                        Created: {{ $doc->created_time }}
+                                    </div>
                                 </div>
-                                <div class="text-sm text-gray-600">
-                                    Created: {{ $doc->created_time }}
-                                </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
+                        <div class="">
+                            <button onclick="window.location.href='{{ route('generate_pdf', ['username' => $doc->user->username, 'document' => $doc->id]) }}'" class="w-full bg-sky-800 text-white">Download</button>
+                        </div>
                     </div>
+                </div>
+
                 @endforeach
             </div>
         </div>

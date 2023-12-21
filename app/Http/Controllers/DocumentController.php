@@ -11,6 +11,8 @@ use App\Models\Project;
 use App\Models\ProjectDetail;
 use App\Models\SkillOther;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +23,21 @@ class DocumentController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+
+    public function generatePDF($username, Document $document){
+        $data = [
+            'document' => $document,
+        ];
+
+        $pdf = FacadePdf::loadView('pdf.document', $data);
+
+        return $pdf->download($document->title . '_updated_' . now()->format('F') . '.pdf');
+        // return view('pdf.document', [
+        //     'username' => $username,
+        //     'document' => $document
+        // ]);
+    }
+
     public function cekUser($username, Document $document){
         $authenticatedUser = Auth::user();
         $getUser = User::where('username', $username)->firstOrFail();

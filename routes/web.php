@@ -33,9 +33,7 @@ use Illuminate\Auth\Events\Logout;
 //     return view('login');
 // })->name('login');
 
-Route::get('/', function(){
-    return view('login.index', ['title' => 'Login Page']);
-});
+Route::get('/', [UserController::class, 'loggedIn'])->name('logged_in');
 
 // Route::get('/cv_builder', [PageController::class, 'cv_Builder'])->name('cv_builder');
 // Route::post('/dashboard', [PageController::class, 'login'])->name('login');
@@ -99,6 +97,8 @@ Route::put('/cv_builder/skillOther/{username}/{document}', [DocumentController::
 
 
 Route::get('/dashboard/{username}', [DocumentController::class, 'index'])->name('dashboard');
+
+Route::get('/generate_pdf/{username}/{document}', [DocumentController::class, 'generatePDF'])->name('generate_pdf');
 
 
 Route::post('/login', [UserController::class, 'loginAccount'])->name('loginAccount');
