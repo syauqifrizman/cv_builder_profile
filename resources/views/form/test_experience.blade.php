@@ -82,7 +82,7 @@
 
                                 {{-- company_experience_description --}}
                                 <div class="mt-4">
-                                    <label for="experience_description_table" class="mb-2 block">Achievements or Job Description (opsional)</label>
+                                    <label for="experience_description_table" class="mb-2 block">Achievements or Job Description</label>
                                     <div class="">
                                         {{-- @if ($experience->experienceDescription) --}}
                                         {{-- @dump($doc) --}}

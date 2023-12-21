@@ -106,7 +106,7 @@
                             </a>
                         </div>
                         <div class="">
-                            <button onclick="window.location.href='{{ route('generate_pdf', ['username' => $doc->user->username, 'document' => $doc->id]) }}'" class="w-full bg-sky-800 text-white">Download</button>
+                            <button onclick="window.location.href='{{ route('generate_pdf', ['username' => $doc->user->username, 'document' => $doc->id]) }}'" class="w-full bg-sky-800 text-white">View as PDF</button>
                         </div>
                     </div>
                 </div>

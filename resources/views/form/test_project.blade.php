@@ -54,13 +54,13 @@
                             {{-- ini harus di-looping --}}
                             {{-- project description --}}
                             <div class="mt-4">
-                                <label for="project_detail" class="mb-2 block">Project Description (opsional)</label>
+                                <label for="project_detail" class="mb-2 block">Project Description</label>
                                 <div class="">
                                     @foreach ($project->projectDetail as $projectDetail)
                                         <div class="mb-1 flex items-center">
                                             <div class="w-2 h-2 bg-black rounded-full mx-2"></div>
                                             <div class="w-full">
-                                                <textarea name="project_detail" id="project_detail" class="w-full rounded pl-4 py-2 pr-2">{{ old('project_detail', $projectDetail->description) }}</textarea>
+                                                <textarea required name="project_detail" id="project_detail" class="w-full rounded pl-4 py-2 pr-2">{{ old('project_detail', $projectDetail->description) }}</textarea>
                                             </div>
                                             @error('project_detail')
                                             <p class="text-red-500 text-sm">{{ $message }}</p>

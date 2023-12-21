@@ -667,6 +667,10 @@ body {
   z-index: 10;
 }
 
+.m-3 {
+  margin: 0.75rem;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -930,20 +934,12 @@ body {
   flex-grow: 1;
 }
 
-.basis-1 {
-  flex-basis: 0.25rem;
-}
-
 .basis-1\/4 {
   flex-basis: 25%;
 }
 
 .basis-1\/6 {
   flex-basis: 16.666667%;
-}
-
-.basis-3 {
-  flex-basis: 0.75rem;
 }
 
 .basis-3\/4 {

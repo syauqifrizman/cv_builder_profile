@@ -13,29 +13,45 @@ use App\Models\SkillOther;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Barryvdh\DomPDF\PDF;
+// use Spatie\Browsershot\Browsershot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DocumentController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function generatePDF($username, Document $document){
+        $selectedDocument = $this->getDocumentByID($document->id);
+
         $data = [
-            'document' => $document,
+            'document' => $selectedDocument,
         ];
 
-        $pdf = FacadePdf::loadView('pdf.document', $data);
+        // dump($data);
 
-        return $pdf->download($document->title . '_updated_' . now()->format('F') . '.pdf');
-        // return view('pdf.document', [
-        //     'username' => $username,
-        //     'document' => $document
-        // ]);
+        // too slow using laravel-domPDF
+        // $pdf = FacadePdf::loadView('pdf.document', $data);
+        // return $pdf->download($document->title . '_updated_' . now()->format('F') . '.pdf');
+
+        // using browsershot (error installing composer require brwosershot)
+        // $html = view('pdf.document', $data)->render();
+        // $pdf = Browsershot::html($html)->pdf();
+
+        // return response($pdf)->header('Content-Type', 'application/pdf');
+
+        return view('pdf.document', [
+            'username' => $username,
+            'document' => $document
+        ]);
+    }
+
+    public function dashboardGuard($username){
+        $authenticatedUser = Auth::user();
+
+        // Check if the authenticated users username matches the provided username
+        if ($authenticatedUser->username !== $username) {
+            abort(404);
+        }
     }
 
     public function cekUser($username, Document $document){
@@ -56,6 +72,7 @@ class DocumentController extends Controller
         // ini harus auth bener dia udah login ke akun atau belum
         // soalnya kalo kita langsung ketik /dashboard/{username} otomatis bakal ketampil juga
         // semua document yg dipunya dari username itu
+        $this->dashboardGuard($username);
 
         $searchName = request('search');
         $sortBy = request('sortBy', 'default'); // Default sort option

@@ -79,7 +79,7 @@
                         @enderror
                     </div>
 
-                    <div class="mt-4">
+                    <div class="mt-4 hidden">
                         <label for="personal_photo" class="mb-2 block">Photo (opsional)
                         </label>
                         <div class="flex items-center justify-center w-full h-24 border-2 border-sky-200 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-sky-50">

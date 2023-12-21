@@ -6,7 +6,7 @@
         <div class="container-left">
             <div class="step bg-sky-50 rounded-md flex items-start pt-4 pr-2 pb-4 pl-2">
                 <div class="flex-1 flex flex-col items-center justify-start text-center">
-                    <button class="rounded-full bg-sky-800 text-white w-10 h-10">
+                    <button id="personalButton" class="rounded-full bg-sky-800 text-white w-10 h-10">
                         1
                     </button>
                     <div>
@@ -15,7 +15,7 @@
                 </div>
 
                 <div class="step flex-1 flex flex-col items-center justify-start text-center">
-                    <button class="rounded-full bg-gray-400 text-white w-10 h-10">
+                    <button id="experienceButton" class="rounded-full bg-sky-800 text-white w-10 h-10">
                         2
                     </button>
                     <div>
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="step flex-1 flex flex-col items-center justify-center text-center">
-                    <button class="rounded-full bg-gray-400 text-white  w-10 h-10">
+                    <button class="rounded-full bg-sky-800 text-white  w-10 h-10">
                         3
                     </button>
                     <div>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="step flex-1 flex flex-col items-center justify-center text-center">
-                    <button class="rounded-full bg-gray-400 text-white w-10 h-10">
+                    <button class="rounded-full bg-sky-800 text-white w-10 h-10">
                         4
                     </button>
                     <div>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="step flex-1 flex flex-col items-center justify-center text-center">
-                    <button class="rounded-full bg-gray-400 text-white  w-10 h-10">
+                    <button class="rounded-full bg-sky-800 text-white  w-10 h-10">
                         5
                     </button>
                     <div>
